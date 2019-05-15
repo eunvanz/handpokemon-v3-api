@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current" // https://github.com/sequelize/sequelize/issues/7840
+        }
+      }
+    ]
+  ]
+}
