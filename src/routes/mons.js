@@ -8,7 +8,15 @@ const { Mon, MonImage } = db;
 
 router.get('/', async (req, res, next) => {
   try {
-    const mons = await Mon.findAll();
+    const mons = await Mon.findAll({
+      include: [
+        {
+          model: MonImage,
+          as: 'monImages'
+        }
+      ],
+      orderBy: [['id', 'ASC']]
+    });
     res.json(mons);
   } catch (error) {
     next(error);
@@ -42,6 +50,28 @@ router.post(
     try {
       const newMon = await Mon.create(req.body);
       res.json(newMon);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.put(
+  '/:id',
+  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  async (req, res, next) => {
+    try {
+      const result = await Mon.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      });
+      if (result[0] === 1) {
+        const newMon = await Mon.findByPk(req.params.id);
+        res.json(newMon);
+      } else {
+        next({ error: '해당하는 포켓몬이 없습니다.' });
+      }
     } catch (error) {
       next(error);
     }

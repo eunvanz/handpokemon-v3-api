@@ -89,7 +89,7 @@ class Mon extends Sequelize.Model {
           type: DataTypes.SMALLINT,
           allowNull: false
         },
-        requiredEvolutionLv: {
+        requiredLv: {
           type: DataTypes.SMALLINT
         }
       },
