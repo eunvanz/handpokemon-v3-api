@@ -13,6 +13,7 @@ export default [
     height: 0.7,
     weight: 6.9,
     point: 1,
+    hp: 45,
     power: 49,
     armor: 49,
     dex: 45,
@@ -34,11 +35,13 @@ export default [
     height: 1,
     weight: 13,
     point: 4,
+    hp: 60,
     power: 62,
     armor: 63,
     dex: 60,
     sPower: 80,
     sArmor: 80,
-    total: 405
+    total: 405,
+    requiredEvolutionLv: 4
   }
 ];

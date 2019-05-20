@@ -61,6 +61,10 @@ class Mon extends Sequelize.Model {
           type: DataTypes.SMALLINT,
           allowNull: false
         },
+        hp: {
+          type: DataTypes.SMALLINT,
+          allowNull: false
+        },
         power: {
           type: DataTypes.SMALLINT,
           allowNull: false
@@ -84,6 +88,9 @@ class Mon extends Sequelize.Model {
         total: {
           type: DataTypes.SMALLINT,
           allowNull: false
+        },
+        requiredEvolutionLv: {
+          type: DataTypes.SMALLINT
         }
       },
       {

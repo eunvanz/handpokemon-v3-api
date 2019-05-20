@@ -5,15 +5,17 @@ class MonImage extends Sequelize.Model {
     return super.init(
       {
         url: {
-          type: DataTypes.STRING(250),
+          type: DataTypes.STRING(500),
           allowNull: false
         },
         monId: {
-          type: DataTypes.SMALLINT,
-          allowNull: false
+          type: DataTypes.SMALLINT
         },
         seq: {
-          type: DataTypes.SMALLINT,
+          type: DataTypes.SMALLINT
+        },
+        designer: {
+          type: DataTypes.STRING(10),
           allowNull: false
         }
       },

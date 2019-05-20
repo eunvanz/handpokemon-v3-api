@@ -1,16 +1,9 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-
 import db from './models';
-
-import monsRouter from './routes/mons';
-import usersRouter from './routes/users';
-import collectionsRouter from './routes/collections';
-
 import mocks from './mocks/index';
+import express from './services/express';
+import routes from './routes';
 
-const app = express();
+const app = express(routes);
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -24,34 +17,40 @@ db.sequelize
   })
   .then(() => {
     if (isDev) {
-      mocks.codes.forEach(item => {
-        db.Code.create(item);
-      });
-      mocks.users.forEach(item => {
-        db.User.create(item);
-      });
-      mocks.mons.forEach(item => {
-        db.Mon.create(item);
-      });
-      mocks.collections.forEach(item => {
-        db.Collection.create(item);
-      });
-      mocks.monImages.forEach(item => {
-        db.MonImage.create(item);
-      });
+      Promise.all(
+        mocks.codes.map(item => {
+          return db.Code.create(item);
+        })
+      )
+        .then(() => {
+          return Promise.all(
+            mocks.users.map(async item => {
+              return db.User.create(item);
+            })
+          );
+        })
+        .then(() => {
+          return Promise.all(
+            mocks.mons.map(async item => {
+              return db.Mon.create(item);
+            })
+          );
+        })
+        .then(() => {
+          return Promise.all(
+            mocks.collections.map(async item => {
+              return db.Collection.create(item);
+            })
+          );
+        })
+        .then(() => {
+          return Promise.all(
+            mocks.monImages.map(async item => {
+              return db.MonImage.create(item);
+            })
+          );
+        });
     }
   });
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-app.use('/users', usersRouter);
-app.use('/mons', monsRouter);
-app.use('/collections', collectionsRouter);
-app.use((err, req, res, next) => {
-  res.status(500).send({ error: err });
-});
 
 export default app;

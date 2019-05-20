@@ -1,13 +1,10 @@
 import Sequelize from 'sequelize';
-import config from '../config';
+import { sequelize as sequelizeConfig } from '../config';
 import UserModel from './user';
 import MonModel from './mon';
 import CodeModel from './code';
 import CollectionModel from './collection';
 import MonImageModel from './monImage';
-
-const envConfig = config[process.env.NODE_ENV];
-const sequelizeConfig = envConfig.sequelize;
 
 const sequelize = new Sequelize(
   sequelizeConfig.database,
@@ -26,11 +23,11 @@ const sequelize = new Sequelize(
 );
 
 const models = {
-  MonImage: MonImageModel.init(sequelize, Sequelize),
+  Code: CodeModel.init(sequelize, Sequelize),
+  User: UserModel.init(sequelize, Sequelize),
   Mon: MonModel.init(sequelize, Sequelize),
   Collection: CollectionModel.init(sequelize, Sequelize),
-  User: UserModel.init(sequelize, Sequelize),
-  Code: CodeModel.init(sequelize, Sequelize)
+  MonImage: MonImageModel.init(sequelize, Sequelize)
 };
 
 Object.values(models)

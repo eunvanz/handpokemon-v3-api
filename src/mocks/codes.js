@@ -202,5 +202,17 @@ export default [
     masterCdNm: '포켓몬랭크',
     detailCd: '0408',
     detailCdNm: 'F'
+  },
+  {
+    masterCd: '05',
+    masterCdNm: '사용자권한',
+    detailCd: '0501',
+    detailCdNm: '일반'
+  },
+  {
+    masterCd: '05',
+    masterCdNm: '사용자권한',
+    detailCd: '0502',
+    detailCdNm: '관리자'
   }
 ];
