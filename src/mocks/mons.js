@@ -106,13 +106,12 @@ const getMigData = () => {
   const result = [];
   keys.forEach(key => {
     const item = migData[key];
-    result.push({
+    const mon = {
       id: item.no,
       name: item.name.ko,
       cost: item.cost,
       mainAttrCd: attrMap[item.mainAttr],
       subAttrCd: attrMap[item.subAttr],
-      prevMonId: migData[item.prev] ? migData[item.prev].no : null,
       gradeCd: gradeMap[item.grade],
       description: item.description.ko,
       generation: Number(item.generation),
@@ -126,8 +125,10 @@ const getMigData = () => {
       sPower: item.sPower,
       sArmor: item.sArmor,
       total: item.total,
-      requiredLv: item.requiredLv
-    });
+      requiredLv: item.requiredLv,
+      prevMonId: item.prev ? migData[item.prev].no : null
+    };
+    result.push(mon);
   });
   return result;
 };

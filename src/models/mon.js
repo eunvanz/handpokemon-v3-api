@@ -4,7 +4,8 @@ class Mon extends Sequelize.Model {
   static associate(models) {
     this.hasMany(models.Mon, {
       foreignKey: 'prevMonId',
-      as: 'nextMons'
+      as: 'nextMons',
+      constraints: false
     });
     this.hasMany(models.MonImage, {
       foreignKey: 'monId',

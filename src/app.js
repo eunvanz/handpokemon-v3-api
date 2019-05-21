@@ -49,6 +49,9 @@ db.sequelize
               return db.MonImage.create(item);
             })
           );
+        })
+        .catch(err => {
+          console.log(err);
         });
     }
   });
