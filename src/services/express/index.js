@@ -15,7 +15,7 @@ export default routes => {
   app.use(cors());
   app.use('/', routes);
   app.use((err, req, res, next) => {
-    res.status(500).send({ message: err });
+    res.status(500).send({ message: err.message ? err.message.name : err });
   });
 
   return app;

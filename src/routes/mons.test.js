@@ -66,7 +66,7 @@ describe('Sign in as admin and action', async () => {
         total: 318
       })
       .set('authorization', token);
-    expect(status).toBe(200);
+    expect(status).toBe(500);
     expect(typeof body).toBe('object');
   });
 });

@@ -8,7 +8,7 @@ const { MonImage } = db;
 
 router.post(
   '/',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const { url, monId, designer } = req.body;
@@ -38,7 +38,7 @@ router.post(
 
 router.get(
   '/',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const monImages = await MonImage.findAll();
@@ -51,7 +51,7 @@ router.get(
 
 router.get(
   '/empty-mon',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const monImages = await MonImage.findAll({
@@ -68,7 +68,7 @@ router.get(
 
 router.get(
   '/:id',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const monImages = await MonImage.findByPk(req.params.id);
@@ -81,7 +81,7 @@ router.get(
 
 router.put(
   '/:id',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const { monId } = req.body;
@@ -118,7 +118,7 @@ router.put(
 
 router.delete(
   '/:id',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const result = await MonImage.destroy({

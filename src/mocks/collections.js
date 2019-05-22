@@ -7,6 +7,7 @@ export default [
     subAttrCd: null,
     height: 0.8,
     weight: 5.7,
+    baseHp: 40,
     basePower: 50,
     baseArmor: 42,
     baseDex: 51,

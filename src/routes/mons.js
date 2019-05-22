@@ -45,7 +45,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post(
   '/',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const newMon = await Mon.create(req.body);
@@ -58,7 +58,7 @@ router.post(
 
 router.put(
   '/:id',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const result = await Mon.update(req.body, {

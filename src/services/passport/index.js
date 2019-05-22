@@ -48,7 +48,7 @@ passport.use(
   )
 );
 
-export const token = ({ isRequired, roles = [ROLE.USER, ROLE.ADMIN] } = {}) => (
+export const token = ({ required, roles = [ROLE.USER, ROLE.ADMIN] } = {}) => (
   req,
   res,
   next
@@ -56,8 +56,8 @@ export const token = ({ isRequired, roles = [ROLE.USER, ROLE.ADMIN] } = {}) => (
   return passport.authenticate('jwt', { session: false }, (err, user, info) => {
     if (
       err ||
-      (isRequired && !user) ||
-      (isRequired && roles.indexOf(user.role) < 0)
+      (required && !user) ||
+      (required && roles.indexOf(user.role) < 0)
     ) {
       return res.status(401).json({ message: '권한이 없습니다.' });
     }

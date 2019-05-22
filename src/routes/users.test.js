@@ -20,7 +20,8 @@ test('POST /users 200', async () => {
       nickname: '웅이2'
     });
   expect(status).toBe(200);
-  expect(typeof body).toBe('object');
+  expect(typeof body.user).toBe('object');
+  expect(typeof body.token).toBe('string');
 });
 
 test('GET /users/:id 200', async () => {

@@ -19,6 +19,15 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/token', token({ required: true }), async (req, res, next) => {
+  try {
+    res.json(req.user);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);
@@ -75,13 +84,22 @@ router.post('/', async (req, res, next) => {
     if (existNickname)
       return res.status(409).json({ message: '존재하는 닉네임입니다.' });
     const encryptedPassword = await encrypt(password);
-    const newUser = await User.create(
+    await User.create(
       Object.assign({
         ...req.body,
         password: encryptedPassword
       })
     );
-    res.json(newUser);
+    passport.authenticate('local', { session: false }, (err, user, info) => {
+      if (err || !user) {
+        return next(err || info.message || '로그인 중에 오류가 발생했습니다.');
+      }
+      req.login(user, { session: false }, err => {
+        if (err) return next(err);
+        const token = jwt.sign(user.toJSON(), process.env.JWT_SECRET);
+        return res.json({ user, token });
+      });
+    })(req, res);
   } catch (error) {
     next(error);
   }
@@ -104,7 +122,7 @@ router.post('/sign-in', async (req, res, next) => {
   }
 });
 
-router.put('/:id', token({ isRequired: true }), async (req, res, next) => {
+router.put('/:id', token({ required: true }), async (req, res, next) => {
   try {
     const result = await User.update(req.body, {
       where: {
@@ -125,7 +143,7 @@ router.put('/:id', token({ isRequired: true }), async (req, res, next) => {
 
 router.put(
   '/all-fields/:id',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const result = await User.update(req.body, {
@@ -147,7 +165,7 @@ router.put(
 
 router.delete(
   '/:id',
-  token({ isRequired: true, roles: [ROLE.ADMIN] }),
+  token({ required: true, roles: [ROLE.ADMIN] }),
   async (req, res, next) => {
     try {
       const result = await User.destroy({
@@ -165,13 +183,5 @@ router.delete(
     }
   }
 );
-
-router.post('/token', token({ isRequired: true }), async (req, res, next) => {
-  try {
-    res.json(req.user);
-  } catch (error) {
-    next(error);
-  }
-});
 
 export default router;

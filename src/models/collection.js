@@ -41,6 +41,10 @@ class Collection extends Sequelize.Model {
           type: DataTypes.DECIMAL(4, 1),
           allowNull: false
         },
+        baseHp: {
+          type: DataTypes.SMALLINT,
+          allowNull: false
+        },
         basePower: {
           type: DataTypes.SMALLINT,
           allowNull: false
@@ -65,29 +69,40 @@ class Collection extends Sequelize.Model {
           type: DataTypes.SMALLINT,
           allowNull: false
         },
+        addedHp: {
+          type: DataTypes.SMALLINT,
+          allowNull: false,
+          defaultValue: 0
+        },
         addedPower: {
           type: DataTypes.SMALLINT,
-          allowNull: false
+          allowNull: false,
+          defaultValue: 0
         },
         addedArmor: {
           type: DataTypes.SMALLINT,
-          allowNull: false
+          allowNull: false,
+          defaultValue: 0
         },
         addedDex: {
           type: DataTypes.SMALLINT,
-          allowNull: false
+          allowNull: false,
+          defaultValue: 0
         },
         addedSPower: {
           type: DataTypes.SMALLINT,
-          allowNull: false
+          allowNull: false,
+          defaultValue: 0
         },
         addedSArmor: {
           type: DataTypes.SMALLINT,
-          allowNull: false
+          allowNull: false,
+          defaultValue: 0
         },
         addedTotal: {
           type: DataTypes.SMALLINT,
-          allowNull: false
+          allowNull: false,
+          defaultValue: 0
         },
         level: {
           type: DataTypes.SMALLINT,
