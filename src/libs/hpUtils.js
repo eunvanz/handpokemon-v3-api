@@ -6,7 +6,8 @@ import { RANK } from '../constants/codes';
 export const getRandomCollectionsByNumberFromMonsWithUserCollections = ({
   repeatCnt,
   mons,
-  userCollections
+  userCollections,
+  userId
 }) => {
   // mons에서 랜덤하게 repeat 만큼 id를 추출
   const monIds = [];
@@ -26,9 +27,11 @@ export const getRandomCollectionsByNumberFromMonsWithUserCollections = ({
       const collection = getCollectionFromMon(
         mons.filter(mon => mon.id === monId)[0]
       );
+      collection.userId = userId;
       result.insert.push(collection);
     }
   });
+  return result;
 };
 
 export const levelUpCollection = col => {
@@ -96,7 +99,8 @@ export const getCollectionFromMon = mon => {
     addedDex: 0,
     addedTotal: 0,
     level: 1,
-    imageSeq: mon.monImages[getRandomInt(0, mon.monImages.length)].seq
+    imageSeq: mon.monImages[getRandomInt(0, mon.monImages.length)].seq,
+    mon
   };
   collection.baseTotal =
     collection.baseHp +

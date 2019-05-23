@@ -17,7 +17,8 @@ class Collection extends Sequelize.Model {
         id: {
           type: DataTypes.SMALLINT,
           allowNull: false,
-          primaryKey: true
+          primaryKey: true,
+          autoIncrement: true
         },
         userId: {
           type: DataTypes.INTEGER,
