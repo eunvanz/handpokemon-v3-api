@@ -2,35 +2,48 @@ const RANK_UNIT = 0.06;
 
 export const RANK_RULE = {
   SS: {
-    chance: 7,
-    range: { min: 1.01 + RANK_UNIT * 3, max: 1 + RANK_UNIT * 4 }
+    CHANCE: 7,
+    RANGE: { MIN: 1.01 + RANK_UNIT * 3, MAX: 1 + RANK_UNIT * 4 }
   },
   S: {
-    chance: 13,
-    range: { min: 1.01 + RANK_UNIT * 2, max: 1 + RANK_UNIT * 3 }
+    CHANCE: 13,
+    RANGE: { MIN: 1.01 + RANK_UNIT * 2, MAX: 1 + RANK_UNIT * 3 }
   },
   A: {
-    chance: 15,
-    range: { min: 1.01 + RANK_UNIT * 1, max: 1 + RANK_UNIT * 2 }
+    CHANCE: 15,
+    RANGE: { MIN: 1.01 + RANK_UNIT * 1, MAX: 1 + RANK_UNIT * 2 }
   },
   B: {
-    chance: 15,
-    range: { min: 1.01, max: 1 + RANK_UNIT * 1 }
+    CHANCE: 15,
+    RANGE: { MIN: 1.01, MAX: 1 + RANK_UNIT * 1 }
   },
   C: {
-    chance: 20,
-    range: { min: 1.01 - RANK_UNIT, max: 1 }
+    CHANCE: 20,
+    RANGE: { MIN: 1.01 - RANK_UNIT, MAX: 1 }
   },
   D: {
-    chance: 10,
-    range: { min: 1.01 - RANK_UNIT * 2, max: 1 - RANK_UNIT }
+    CHANCE: 10,
+    RANGE: { MIN: 1.01 - RANK_UNIT * 2, MAX: 1 - RANK_UNIT }
   },
   E: {
-    chance: 10,
-    range: { min: 1.01 - RANK_UNIT * 3, max: 1 - RANK_UNIT * 2 }
+    CHANCE: 10,
+    RANGE: { MIN: 1.01 - RANK_UNIT * 3, MAX: 1 - RANK_UNIT * 2 }
   },
   F: {
-    chance: 10,
-    range: { min: 1.01 - RANK_UNIT * 4, max: 1 - RANK_UNIT * 3 }
+    CHANCE: 10,
+    RANGE: { MIN: 1.01 - RANK_UNIT * 4, MAX: 1 - RANK_UNIT * 3 }
+  }
+};
+
+export const CREDIT_RULE = {
+  PICK: {
+    MAX: 12,
+    INTERVAL: 1000 * 20
+    // INTERVAL: 1000 * 60 * 20
+  },
+  BATTLE: {
+    MAX: 12,
+    INTERVAL: 1000 * 20
+    // INTERVAL: 1000 * 60 * 20
   }
 };

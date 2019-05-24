@@ -10,6 +10,11 @@ class Collection extends Sequelize.Model {
       foreignKey: 'monId',
       as: 'mon'
     });
+    this.hasMany(models.MonImage, {
+      foreignKey: 'monId',
+      targetKey: 'monId',
+      as: 'monImages'
+    });
   }
   static init(sequelize, DataTypes) {
     return super.init(

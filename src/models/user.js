@@ -49,14 +49,14 @@ class User extends Sequelize.Model {
           defaultValue: 12
         },
         lastPick: {
-          type: 'TIMESTAMP',
+          type: DataTypes.STRING(14),
           allowNull: false,
-          defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+          defaultValue: Date.now()
         },
         lastBattle: {
-          type: 'TIMESTAMP',
+          type: DataTypes.STRING(14),
           allowNull: false,
-          defaultValue: DataTypes.literal('CURRENT_TIMESTAMP')
+          defaultValue: Date.now()
         },
         pokemoney: {
           type: DataTypes.INTEGER,

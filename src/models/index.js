@@ -18,7 +18,8 @@ const sequelize = new Sequelize(
     },
     dialectOptions: {
       decimalNumbers: true
-    }
+    },
+    timezone: '+09:00'
   }
 );
 

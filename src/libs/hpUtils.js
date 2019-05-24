@@ -1,6 +1,7 @@
 import { round, random } from 'lodash';
+import moment from 'moment';
 import { getRandomInt, repeat } from './commonUtils';
-import { RANK_RULE } from '../constants/rules';
+import { RANK_RULE, CREDIT_RULE } from '../constants/rules';
 import { RANK } from '../constants/codes';
 
 export const getRandomCollectionsByNumberFromMonsWithUserCollections = ({
@@ -117,70 +118,88 @@ export const getCollectionFromMon = mon => {
 
 export const getRankCd = (total, monTotal) => {
   const ratio = total / monTotal;
-  if (ratio >= RANK_RULE.SS.range.min) return RANK.SS;
-  else if (ratio >= RANK_RULE.S.range.min) return RANK.S;
-  else if (ratio >= RANK_RULE.A.range.min) return RANK.A;
-  else if (ratio >= RANK_RULE.B.range.min) return RANK.B;
-  else if (ratio >= RANK_RULE.C.range.min) return RANK.C;
-  else if (ratio >= RANK_RULE.D.range.min) return RANK.D;
-  else if (ratio >= RANK_RULE.E.range.min) return RANK.E;
-  else if (ratio >= RANK_RULE.F.range.min) return RANK.F;
+  if (ratio >= RANK_RULE.SS.RANGE.MIN) return RANK.SS;
+  else if (ratio >= RANK_RULE.S.RANGE.MIN) return RANK.S;
+  else if (ratio >= RANK_RULE.A.RANGE.MIN) return RANK.A;
+  else if (ratio >= RANK_RULE.B.RANGE.MIN) return RANK.B;
+  else if (ratio >= RANK_RULE.C.RANGE.MIN) return RANK.C;
+  else if (ratio >= RANK_RULE.D.RANGE.MIN) return RANK.D;
+  else if (ratio >= RANK_RULE.E.RANGE.MIN) return RANK.E;
+  else if (ratio >= RANK_RULE.F.RANGE.MIN) return RANK.F;
 };
 
 export const getRandomStat = stat => {
   const idx = random(0, 100);
-  if (idx > 100 - RANK_RULE.SS.chance) {
-    return round(stat * random(RANK_RULE.SS.range.min, RANK_RULE.SS.range.max));
-  } else if (idx > 100 - RANK_RULE.SS.chance - RANK_RULE.S.chance) {
-    return round(stat * random(RANK_RULE.S.range.min, RANK_RULE.S.range.max));
+  if (idx > 100 - RANK_RULE.SS.CHANCE) {
+    return round(stat * random(RANK_RULE.SS.RANGE.MIN, RANK_RULE.SS.RANGE.MAX));
+  } else if (idx > 100 - RANK_RULE.SS.CHANCE - RANK_RULE.S.CHANCE) {
+    return round(stat * random(RANK_RULE.S.RANGE.MIN, RANK_RULE.S.RANGE.MAX));
   } else if (
     idx >
-    100 - RANK_RULE.SS.chance - RANK_RULE.S.chance - RANK_RULE.A.chance
+    100 - RANK_RULE.SS.CHANCE - RANK_RULE.S.CHANCE - RANK_RULE.A.CHANCE
   ) {
-    return round(stat * random(RANK_RULE.A.range.min, RANK_RULE.A.range.max));
-  } else if (
-    idx >
-    100 -
-      RANK_RULE.SS.chance -
-      RANK_RULE.S.chance -
-      RANK_RULE.A.chance -
-      RANK_RULE.B.chance
-  ) {
-    return round(stat * random(RANK_RULE.B.range.min, RANK_RULE.B.range.max));
+    return round(stat * random(RANK_RULE.A.RANGE.MIN, RANK_RULE.A.RANGE.MAX));
   } else if (
     idx >
     100 -
-      RANK_RULE.SS.chance -
-      RANK_RULE.S.chance -
-      RANK_RULE.A.chance -
-      RANK_RULE.B.chance -
-      RANK_RULE.C.chance
+      RANK_RULE.SS.CHANCE -
+      RANK_RULE.S.CHANCE -
+      RANK_RULE.A.CHANCE -
+      RANK_RULE.B.CHANCE
   ) {
-    return round(stat * random(RANK_RULE.C.range.min, RANK_RULE.C.range.max));
+    return round(stat * random(RANK_RULE.B.RANGE.MIN, RANK_RULE.B.RANGE.MAX));
   } else if (
     idx >
     100 -
-      RANK_RULE.SS.chance -
-      RANK_RULE.S.chance -
-      RANK_RULE.A.chance -
-      RANK_RULE.B.chance -
-      RANK_RULE.C.chance -
-      RANK_RULE.D.chance
+      RANK_RULE.SS.CHANCE -
+      RANK_RULE.S.CHANCE -
+      RANK_RULE.A.CHANCE -
+      RANK_RULE.B.CHANCE -
+      RANK_RULE.C.CHANCE
   ) {
-    return round(stat * random(RANK_RULE.D.range.min, RANK_RULE.D.range.max));
+    return round(stat * random(RANK_RULE.C.RANGE.MIN, RANK_RULE.C.RANGE.MAX));
   } else if (
     idx >
     100 -
-      RANK_RULE.SS.chance -
-      RANK_RULE.S.chance -
-      RANK_RULE.A.chance -
-      RANK_RULE.B.chance -
-      RANK_RULE.C.chance -
-      RANK_RULE.D.chance -
-      RANK_RULE.E.chance
+      RANK_RULE.SS.CHANCE -
+      RANK_RULE.S.CHANCE -
+      RANK_RULE.A.CHANCE -
+      RANK_RULE.B.CHANCE -
+      RANK_RULE.C.CHANCE -
+      RANK_RULE.D.CHANCE
   ) {
-    return round(stat * random(RANK_RULE.E.range.min, RANK_RULE.E.range.max));
+    return round(stat * random(RANK_RULE.D.RANGE.MIN, RANK_RULE.D.RANGE.MAX));
+  } else if (
+    idx >
+    100 -
+      RANK_RULE.SS.CHANCE -
+      RANK_RULE.S.CHANCE -
+      RANK_RULE.A.CHANCE -
+      RANK_RULE.B.CHANCE -
+      RANK_RULE.C.CHANCE -
+      RANK_RULE.D.CHANCE -
+      RANK_RULE.E.CHANCE
+  ) {
+    return round(stat * random(RANK_RULE.E.RANGE.MIN, RANK_RULE.E.RANGE.MAX));
   } else {
-    return round(stat * random(RANK_RULE.F.range.min, RANK_RULE.F.range.max));
+    return round(stat * random(RANK_RULE.F.RANGE.MIN, RANK_RULE.F.RANGE.MAX));
   }
+};
+
+export const getRefreshedUser = user => {
+  // now - lastTime 를 interval로 나눈 몫 = 추가되어야 할 크레딧
+  const now = moment();
+  const pickDiff = now.diff(Number(user.lastPick));
+  const battleDiff = now.diff(Number(user.lastBattle));
+  const pickCreditToAdd = Math.floor(pickDiff / CREDIT_RULE.PICK.INTERVAL);
+  const battleCreditToAdd = Math.floor(battleDiff / CREDIT_RULE.PICK.INTERVAL);
+  user.pickCredit = Math.min(
+    user.pickCredit + pickCreditToAdd,
+    CREDIT_RULE.PICK.MAX
+  );
+  user.battleCredit = Math.min(
+    user.battleCredit + battleCreditToAdd,
+    CREDIT_RULE.BATTLE.MAX
+  );
+  return user;
 };

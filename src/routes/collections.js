@@ -6,8 +6,10 @@ import { GRADE, ROLE } from '../constants/codes';
 import { token } from '../services/passport';
 import {
   getRandomCollectionsByNumberFromMons,
-  getRandomCollectionsByNumberFromMonsWithUserCollections
+  getRandomCollectionsByNumberFromMonsWithUserCollections,
+  getRefreshedUser
 } from '../libs/hpUtils';
+import { CREDIT_RULE } from '../constants/rules';
 
 const router = express.Router();
 const { Collection, User, Mon, MonImage } = db;
@@ -87,7 +89,18 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
     const repeatCnt = Number(query.repeatCnt);
     const result = await db.sequelize.transaction(async transaction => {
       try {
-        const thisUser = await User.findByPk(user.id, {
+        let thisUser = await User.findByPk(user.id, {
+          transaction,
+          lock: {
+            level: transaction.LOCK.UPDATE
+          }
+        });
+        // thisUser의 credit을 리프레시
+        thisUser = getRefreshedUser(thisUser);
+        await User.update(thisUser, {
+          where: {
+            id: thisUser.id
+          },
           transaction,
           lock: {
             level: transaction.LOCK.UPDATE
@@ -119,6 +132,10 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
             {
               model: Mon,
               as: 'mon'
+            },
+            {
+              model: MonImage,
+              as: 'monImages'
             }
           ],
           transaction,
@@ -159,10 +176,12 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
             throw new Error(error);
           }
         });
+        const now = Date.now();
+        const diff = now - Number(thisUser.lastPick);
         await User.update(
           Object.assign({}, thisUser, {
             pickCredit: thisUser.pickCredit - repeatCnt,
-            lastPick: db.sequelize.fn('NOW'),
+            lastPick: now - (diff % CREDIT_RULE.PICK.INTERVAL),
             colPoint:
               thisUser.colPoint +
               insert.reduce((accm, item) => accm + item.mon.point, 0)
