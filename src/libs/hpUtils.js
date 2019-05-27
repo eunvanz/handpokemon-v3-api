@@ -5,30 +5,58 @@ import { RANK_RULE, CREDIT_RULE } from '../constants/rules';
 import { RANK } from '../constants/codes';
 
 export const getRandomCollectionsByNumberFromMonsWithUserCollections = ({
-  repeatCnt,
+  repeatCnt = 1,
   mons,
   userCollections,
   userId
 }) => {
+  console.log('getRandomCollectionByNumberFromMonsWithUserCollections');
   // mons에서 랜덤하게 repeat 만큼 id를 추출
   const monIds = [];
   repeat(() => {
-    monIds.push(mons[random(0, mons.length)].id);
+    monIds.push(mons[random(0, mons.length - 1)].id);
   }, repeatCnt);
 
   // userCollections에 존재하는 id인 경우에는 update, else insert 삽입
   const result = { insert: [], update: [] };
-  const monIdExistsInCollections = monId =>
-    userCollections.filter(col => col.monId === monId).length > 0;
+  const monIdExistsInCollections = monId => {
+    return userCollections.filter(col => col.monId === monId).length > 0;
+  };
   monIds.forEach(monId => {
     if (monIdExistsInCollections(monId)) {
-      const collection = userCollections.filter(col => col.monId === monId)[0];
-      result.update.push(levelUpCollection(collection));
+      const userCollection = userCollections.filter(
+        col => col.monId === monId
+      )[0];
+      console.log('user collection', userCollection);
+      // 이미 업데이트한 포켓몬이 있는 경우 체크
+      const dupCollection = result.update.filter(
+        item => item.monId === monId
+      )[0];
+      let increasedLevelCollcection;
+      if (dupCollection) {
+        // 이 경우에는 기존의 포켓몬을 레벨업해서 넣고, 기존것은 삭제
+        result.update = result.update.filter(item => item.monId !== monId);
+        increasedLevelCollcection = levelUpCollection(dupCollection);
+      } else {
+        increasedLevelCollcection = levelUpCollection(userCollection);
+      }
+      result.update.push(increasedLevelCollcection);
     } else {
-      const collection = getCollectionFromMon(
-        mons.filter(mon => mon.id === monId)[0]
-      );
-      collection.userId = userId;
+      // 이미 생성된 포켓몬이 있는 경우 체크
+      let collection;
+      const dupCollection = result.insert.filter(
+        item => item.monId === monId
+      )[0];
+      if (dupCollection) {
+        // 이 경우에는 기존의 포켓몬 레벨업해서 넣고, 기존것은 삭제
+        result.insert = result.insert.filter(item => item.monId !== monId);
+        collection = levelUpCollection(dupCollection);
+      } else {
+        collection = getCollectionFromMon(
+          mons.filter(mon => mon.id === monId)[0]
+        );
+        collection.userId = userId;
+      }
       result.insert.push(collection);
     }
   });
@@ -36,6 +64,8 @@ export const getRandomCollectionsByNumberFromMonsWithUserCollections = ({
 };
 
 export const levelUpCollection = col => {
+  console.log('before level up', col);
+  const result = Object.assign({}, col.dataValues || col);
   const fields = [
     'addedHp',
     'addedPower',
@@ -45,11 +75,36 @@ export const levelUpCollection = col => {
     'addedDex'
   ];
   for (let i = 0; i < col.mon.point; i++) {
-    col[fields[random(0, fields.length - 1)]]++;
+    result[fields[random(0, fields.length - 1)]]++;
   }
-  col.level++;
-  col.addedTotal += col.mon.point;
-  return col;
+  result.level++;
+  result.addedTotal += col.mon.point;
+  console.log('levelUpCollection', result);
+  return result;
+};
+
+export const levelDownCollection = (col, levelToDown = 1) => {
+  const result = Object.assign({}, col.dataValues || col);
+  const fields = [
+    'addedHp',
+    'addedPower',
+    'addedArmor',
+    'addedSPower',
+    'addedSArmor',
+    'addedDex'
+  ];
+  for (let i = 0; i < col.mon.point * levelToDown; i++) {
+    const fieldIdx = random(0, fields.length - 1);
+    if (result[fields[fieldIdx]] > 0) {
+      result[fields[fieldIdx]]--;
+    } else {
+      i--;
+    }
+  }
+  result.level -= levelToDown;
+  result.addedTotal -= col.mon.point * levelToDown;
+  console.log('level down result', result);
+  return result;
 };
 
 export const getRandomCollectionsByNumberFromMons = ({
@@ -100,7 +155,10 @@ export const getCollectionFromMon = mon => {
     addedDex: 0,
     addedTotal: 0,
     level: 1,
-    imageSeq: mon.monImages[getRandomInt(0, mon.monImages.length)].seq,
+    imageSeq:
+      mon.monImages.length > 0
+        ? mon.monImages[getRandomInt(0, mon.monImages.length)].seq
+        : null,
     mon
   };
   collection.baseTotal =
@@ -113,6 +171,7 @@ export const getCollectionFromMon = mon => {
   collection.rankCd = getRankCd(collection.baseTotal, mon.total);
   collection.monImages = mon.monImages;
   collection.mon = mon;
+  collection.nextMons = mon.nextMons;
   return collection;
 };
 

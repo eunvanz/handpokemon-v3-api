@@ -24,28 +24,28 @@ db.sequelize
       )
         .then(() => {
           return Promise.all(
-            mocks.users.map(async item => {
+            mocks.users.map(item => {
               return db.User.create(item);
             })
           );
         })
         .then(() => {
           return Promise.all(
-            mocks.mons.map(async item => {
+            mocks.mons.map(item => {
               return db.Mon.create(item);
             })
           );
         })
         .then(() => {
           return Promise.all(
-            mocks.collections.map(async item => {
+            mocks.collections.map(item => {
               return db.Collection.create(item);
             })
           );
         })
         .then(() => {
           return Promise.all(
-            mocks.monImages.map(async item => {
+            mocks.monImages.map(item => {
               return db.MonImage.create(item);
             })
           );

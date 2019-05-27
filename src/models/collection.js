@@ -12,8 +12,14 @@ class Collection extends Sequelize.Model {
     });
     this.hasMany(models.MonImage, {
       foreignKey: 'monId',
-      targetKey: 'monId',
+      sourceKey: 'monId',
       as: 'monImages'
+    });
+    this.hasMany(models.Mon, {
+      foreignKey: 'prevMonId',
+      sourceKey: 'monId',
+      as: 'nextMons',
+      constraints: false
     });
   }
   static init(sequelize, DataTypes) {

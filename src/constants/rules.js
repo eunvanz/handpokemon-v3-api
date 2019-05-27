@@ -1,4 +1,5 @@
 const RANK_UNIT = 0.06;
+import { GRADE } from './codes';
 
 export const RANK_RULE = {
   SS: {
@@ -45,5 +46,38 @@ export const CREDIT_RULE = {
     MAX: 12,
     INTERVAL: 1000 * 20
     // INTERVAL: 1000 * 60 * 20
+  }
+};
+
+export const MIX_RULE = (srcMon, tgtMon) => {
+  const srcGradeCd = srcMon.gradeCd;
+  const tgtGradeCd = tgtMon.gradeCd;
+  if (srcGradeCd === tgtGradeCd) {
+    if (srcGradeCd === GRADE.RARE) {
+      return {
+        gradeCds: [GRADE.BASIC, GRADE.RARE, GRADE.ELITE],
+        chances: [100, 40, 15]
+      };
+    } else if (srcGradeCd === GRADE.ELITE) {
+      return {
+        gradeCds: [GRADE.RARE, GRADE.ELITE, GRADE.LEGEND],
+        chances: [100, 50, 10]
+      };
+    } else if (srcGradeCd === GRADE.LEGEND) {
+      return {
+        gradeCds: [GRADE.ELITE, GRADE.LEGEND],
+        chances: [100, 50]
+      };
+    } else {
+      return {
+        gradeCds: [GRADE.BASIC, GRADE.RARE],
+        chances: [100, 40]
+      };
+    }
+  } else {
+    return {
+      gradeCds: [GRADE.BASIC, GRADE.RARE],
+      chances: [100, 40]
+    };
   }
 };

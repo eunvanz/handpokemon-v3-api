@@ -1,15 +1,16 @@
 import express from 'express';
 import Sequelize from 'Sequelize';
-import { concat, shuffle } from 'lodash';
+import { concat, shuffle, random } from 'lodash';
 import db from '../models';
 import { GRADE, ROLE } from '../constants/codes';
 import { token } from '../services/passport';
 import {
   getRandomCollectionsByNumberFromMons,
   getRandomCollectionsByNumberFromMonsWithUserCollections,
-  getRefreshedUser
+  getRefreshedUser,
+  levelDownCollection
 } from '../libs/hpUtils';
-import { CREDIT_RULE } from '../constants/rules';
+import { CREDIT_RULE, MIX_RULE } from '../constants/rules';
 
 const router = express.Router();
 const { Collection, User, Mon, MonImage } = db;
@@ -17,13 +18,17 @@ const { in: opIn } = Sequelize.Op;
 
 const includeMon = {
   model: Mon,
-  as: 'mon',
-  include: [
-    {
-      model: MonImage,
-      as: 'monImages'
-    }
-  ]
+  as: 'mon'
+};
+
+const includeMonImages = {
+  model: MonImage,
+  as: 'monImages'
+};
+
+const includeNextMons = {
+  model: Mon,
+  as: 'nextMons'
 };
 
 const includeUser = {
@@ -34,7 +39,7 @@ const includeUser = {
 router.get('/', async (req, res, next) => {
   try {
     const cols = await Collection.findAll({
-      include: [includeMon, includeUser]
+      include: [includeMon, includeUser, includeMonImages, includeNextMons]
     });
     res.json(cols);
   } catch (error) {
@@ -48,10 +53,26 @@ router.get('/user/:userId', async (req, res, next) => {
       where: {
         userId: req.params.userId
       },
-      include: [includeMon, includeUser]
+      include: [includeMon, includeUser, includeMonImages, includeNextMons]
     });
     res.json(cols);
   } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.get('/token', token({ required: true }), async (req, res, next) => {
+  try {
+    const cols = await Collection.findAll({
+      where: {
+        userId: req.user.id
+      },
+      include: [includeMon, includeUser, includeMonImages, includeNextMons]
+    });
+    res.json(cols);
+  } catch (error) {
+    console.error(error);
     next(error);
   }
 });
@@ -66,6 +87,10 @@ router.get('/start-pick', async (req, res, next) => {
         {
           model: MonImage,
           as: 'monImages'
+        },
+        {
+          model: Mon,
+          as: 'nextMons'
         }
       ]
     });
@@ -101,10 +126,7 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
           where: {
             id: thisUser.id
           },
-          transaction,
-          lock: {
-            level: transaction.LOCK.UPDATE
-          }
+          transaction
         });
         if (thisUser.pickCredit < repeatCnt)
           throw new Error('채집 크레딧이 부족합니다.');
@@ -121,23 +143,22 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
             {
               model: MonImage,
               as: 'monImages'
+            },
+            {
+              model: Mon,
+              as: 'nextMons'
             }
-          ]
+          ],
+          transaction,
+          lock: {
+            level: transaction.LOCK.SHARE
+          }
         });
         const userCollections = await Collection.findAll({
           where: {
             userId: user.id
           },
-          include: [
-            {
-              model: Mon,
-              as: 'mon'
-            },
-            {
-              model: MonImage,
-              as: 'monImages'
-            }
-          ],
+          include: [includeMon, includeMonImages, includeNextMons],
           transaction,
           lock: {
             level: transaction.LOCK.UPDATE
@@ -152,26 +173,37 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
           userCollections,
           userId: user.id
         });
+        console.log('insert', insert);
+        console.log('update', update);
         insert.forEach(async item => {
           try {
-            await Collection.create(item, {
-              transaction
-            });
+            if (item)
+              await Collection.create(item, {
+                transaction
+              });
           } catch (error) {
             throw new Error(error);
           }
         });
         update.forEach(async item => {
           try {
-            await Collection.update(item, {
-              where: {
-                id: item.id
-              },
-              transaction,
-              lock: {
-                level: transaction.LOCK.UPDATE
-              }
-            });
+            if (item)
+              await Collection.update(item, {
+                where: {
+                  id: item.id
+                },
+                transaction,
+                fields: [
+                  'level',
+                  'addedHp',
+                  'addedPower',
+                  'addedArmor',
+                  'addedSPower',
+                  'addedSArmor',
+                  'addedDex',
+                  'addedTotal'
+                ]
+              });
           } catch (error) {
             throw new Error(error);
           }
@@ -188,10 +220,351 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
           }),
           {
             where: { id: thisUser.id },
-            transaction,
-            lock: {
-              level: transaction.LOCK.UPDATE
+            transaction
+          }
+        );
+        return Promise.resolve(shuffle(concat(insert, update)));
+      } catch (error) {
+        throw new Error(error);
+      }
+    });
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.get('/mix', token({ required: true }), async (req, res, next) => {
+  try {
+    const { user, query } = req;
+    const collectionIds = query.collectionIds.split(',');
+    let colPointDiff = 0;
+    const result = await db.sequelize.transaction(async transaction => {
+      try {
+        let thisUser = await User.findByPk(user.id, {
+          transaction,
+          lock: {
+            level: transaction.LOCK.UPDATE
+          }
+        });
+
+        const collections = await Collection.findAll({
+          where: {
+            id: {
+              [opIn]: collectionIds
+            },
+            userId: thisUser.id
+          },
+          include: [
+            {
+              model: Mon,
+              as: 'mon'
             }
+          ],
+          transaction,
+          lock: {
+            level: transaction.LOCK.UPDATE
+          }
+        });
+
+        if (collections.length !== collectionIds)
+          throw new Error('잘못된 요청입니다.');
+
+        console.log('collections', collections);
+
+        collections.forEach(async collection => {
+          if (collection.level === 1) {
+            await Collection.destroy({
+              where: {
+                id: collection.id
+              },
+              transaction
+            });
+            colPointDiff += collection.mon.point * -1;
+            console.log('colPointDiff at destroy', colPointDiff);
+          } else {
+            await Collection.update(levelDownCollection(collection), {
+              where: {
+                id: collection.id
+              },
+              transaction,
+              fields: [
+                'level',
+                'addedHp',
+                'addedPower',
+                'addedArmor',
+                'addedSPower',
+                'addedSArmor',
+                'addedDex',
+                'addedTotal'
+              ]
+            });
+          }
+        });
+        console.log('collections', collections);
+        const { gradeCds, chances } = MIX_RULE(
+          collections[0].mon,
+          collections[1].mon
+        );
+        const chancePoint = random(0, 100);
+        let gradeCdIdx = 0;
+        console.log('chances', chances);
+        console.log('chancePoint', chancePoint);
+        chances.forEach((value, idx) => {
+          if (value >= chancePoint) gradeCdIdx = idx;
+        });
+        const mons = await Mon.findAll({
+          where: {
+            gradeCd: gradeCds[gradeCdIdx]
+          },
+          include: [
+            {
+              model: MonImage,
+              as: 'monImages'
+            },
+            {
+              model: Mon,
+              as: 'nextMons'
+            }
+          ],
+          transaction,
+          lock: {
+            level: transaction.LOCK.SHARE
+          }
+        });
+        const userCollections = await Collection.findAll({
+          where: {
+            userId: user.id
+          },
+          include: [includeMon, includeMonImages, includeNextMons],
+          transaction,
+          lock: {
+            level: transaction.LOCK.UPDATE
+          }
+        });
+        const {
+          insert,
+          update
+        } = getRandomCollectionsByNumberFromMonsWithUserCollections({
+          mons,
+          userCollections,
+          userId: user.id
+        });
+        console.log('insert', insert);
+        console.log('update', update);
+        insert.forEach(async item => {
+          try {
+            if (item)
+              await Collection.create(item, {
+                transaction
+              });
+          } catch (error) {
+            throw new Error(error);
+          }
+        });
+        update.forEach(async item => {
+          try {
+            if (item)
+              await Collection.update(item, {
+                where: {
+                  id: item.id
+                },
+                transaction,
+                fields: [
+                  'level',
+                  'addedHp',
+                  'addedPower',
+                  'addedArmor',
+                  'addedSPower',
+                  'addedSArmor',
+                  'addedDex',
+                  'addedTotal'
+                ]
+              });
+          } catch (error) {
+            throw new Error(error);
+          }
+        });
+        colPointDiff += insert.reduce((accm, item) => accm + item.mon.point, 0);
+        console.log('colPointDiff at final', colPointDiff);
+        await User.update(
+          Object.assign({}, thisUser, {
+            colPoint: thisUser.colPoint + colPointDiff
+          }),
+          {
+            where: { id: thisUser.id },
+            transaction
+          }
+        );
+        return Promise.resolve(shuffle(concat(insert, update)));
+      } catch (error) {
+        throw new Error(error);
+      }
+    });
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.get('/evolute', token({ required: true }), async (req, res, next) => {
+  try {
+    const { user, query } = req;
+    const collectionId = query.collectionId;
+    let colPointDiff = 0;
+    const result = await db.sequelize.transaction(async transaction => {
+      try {
+        let thisUser = await User.findByPk(user.id, {
+          transaction,
+          lock: {
+            level: transaction.LOCK.UPDATE
+          }
+        });
+
+        const collection = await Collection.findByPk(collectionId, {
+          include: [
+            {
+              model: Mon,
+              as: 'mon'
+            },
+            {
+              model: Mon,
+              as: 'nextMons'
+            }
+          ],
+          transaction,
+          lock: {
+            level: transaction.LOCK.UPDATE
+          }
+        });
+
+        const { nextMons } = collection;
+
+        if (
+          !collection ||
+          collection.userId !== thisUser.id ||
+          nextMons.length === 0
+        )
+          throw new Error('잘못된 요청입니다.');
+
+        console.log('collection', collection);
+
+        if (collection.level === nextMons[0].requiredLv) {
+          await Collection.destroy({
+            where: {
+              id: collection.id
+            },
+            transaction
+          });
+          colPointDiff += collection.mon.point * -1;
+          console.log('colPointDiff at destroy', colPointDiff);
+        } else {
+          await Collection.update(
+            levelDownCollection(collection, nextMons[0].requiredLv),
+            {
+              where: {
+                id: collection.id
+              },
+              transaction,
+              fields: [
+                'level',
+                'addedHp',
+                'addedPower',
+                'addedArmor',
+                'addedSPower',
+                'addedSArmor',
+                'addedDex',
+                'addedTotal'
+              ]
+            }
+          );
+        }
+        console.log('collection', collection);
+        const mons = await Mon.findAll({
+          where: {
+            id: {
+              [opIn]: nextMons.map(mon => mon.id)
+            }
+          },
+          include: [
+            {
+              model: MonImage,
+              as: 'monImages'
+            },
+            {
+              model: Mon,
+              as: 'nextMons'
+            }
+          ],
+          transaction,
+          lock: {
+            level: transaction.LOCK.SHARE
+          }
+        });
+        const userCollections = await Collection.findAll({
+          where: {
+            userId: user.id
+          },
+          include: [includeMon, includeMonImages, includeNextMons],
+          transaction,
+          lock: {
+            level: transaction.LOCK.UPDATE
+          }
+        });
+        const {
+          insert,
+          update
+        } = getRandomCollectionsByNumberFromMonsWithUserCollections({
+          mons,
+          userCollections,
+          userId: user.id
+        });
+        console.log('insert', insert);
+        console.log('update', update);
+        insert.forEach(async item => {
+          try {
+            if (item)
+              await Collection.create(item, {
+                transaction
+              });
+          } catch (error) {
+            throw new Error(error);
+          }
+        });
+        update.forEach(async item => {
+          try {
+            if (item)
+              await Collection.update(item, {
+                where: {
+                  id: item.id
+                },
+                transaction,
+                fields: [
+                  'level',
+                  'addedHp',
+                  'addedPower',
+                  'addedArmor',
+                  'addedSPower',
+                  'addedSArmor',
+                  'addedDex',
+                  'addedTotal'
+                ]
+              });
+          } catch (error) {
+            throw new Error(error);
+          }
+        });
+        colPointDiff += insert.reduce((accm, item) => accm + item.mon.point, 0);
+        console.log('colPointDiff at final', colPointDiff);
+        await User.update(
+          Object.assign({}, thisUser, {
+            colPoint: thisUser.colPoint + colPointDiff
+          }),
+          {
+            where: { id: thisUser.id },
+            transaction
           }
         );
         return Promise.resolve(shuffle(concat(insert, update)));
