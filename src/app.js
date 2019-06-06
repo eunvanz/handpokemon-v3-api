@@ -50,6 +50,13 @@ db.sequelize
             })
           );
         })
+        .then(() => {
+          return Promise.all(
+            mocks.achievements.map(item => {
+              return db.Achievement.create(item);
+            })
+          );
+        })
         .catch(err => {
           console.error(err);
         });

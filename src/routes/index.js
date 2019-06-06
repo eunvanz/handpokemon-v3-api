@@ -5,6 +5,8 @@ import collections from './collections';
 import files from './files';
 import monImages from './monImages';
 import codes from './codes';
+import books from './books';
+import unlockedBooks from './unlockedBooks';
 
 const router = new Router();
 
@@ -14,5 +16,7 @@ router.use('/collections', collections);
 router.use('/files', files);
 router.use('/mon-images', monImages);
 router.use('/codes', codes);
+router.use('/books', books);
+router.use('/unlocked-books', unlockedBooks);
 
 export default router;

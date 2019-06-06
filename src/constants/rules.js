@@ -39,12 +39,12 @@ export const RANK_RULE = {
 export const CREDIT_RULE = {
   PICK: {
     MAX: 12,
-    INTERVAL: 1000 * 20
+    INTERVAL: 1000 * 5
     // INTERVAL: 1000 * 60 * 20
   },
   BATTLE: {
     MAX: 12,
-    INTERVAL: 1000 * 20
+    INTERVAL: 1000 * 5
     // INTERVAL: 1000 * 60 * 20
   }
 };
@@ -81,3 +81,6 @@ export const MIX_RULE = (srcMon, tgtMon) => {
     };
   }
 };
+
+// 각 seq 오픈 시 가격
+export const BOOK_RULE = [0, 0, 0, 500, 1000, 3000];

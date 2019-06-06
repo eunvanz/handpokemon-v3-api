@@ -129,7 +129,7 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
           transaction
         });
         if (thisUser.pickCredit < repeatCnt)
-          throw new Error('채집 크레딧이 부족합니다.');
+          return next('채집 크레딧이 부족합니다.');
         const mons = await Mon.findAll({
           where: {
             gradeCd: {
@@ -268,8 +268,7 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
           }
         });
 
-        if (collections.length !== collectionIds)
-          throw new Error('잘못된 요청입니다.');
+        if (collections.length !== 2) return next('잘못된 요청입니다.');
 
         console.log('collections', collections);
 
@@ -447,7 +446,7 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
           collection.userId !== thisUser.id ||
           nextMons.length === 0
         )
-          throw new Error('잘못된 요청입니다.');
+          return next('잘못된 요청입니다.');
 
         console.log('collection', collection);
 
