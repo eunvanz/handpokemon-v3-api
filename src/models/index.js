@@ -8,6 +8,7 @@ import MonImageModel from './monImage';
 import BookModel from './book';
 import UnlockedBookModel from './unlockedBook';
 import AchievementModel from './achievement';
+import UserAchievementModel from './userAchievement';
 
 const sequelize = new Sequelize(
   sequelizeConfig.database,
@@ -34,7 +35,8 @@ const models = {
   MonImage: MonImageModel.init(sequelize, Sequelize),
   Book: BookModel.init(sequelize, Sequelize),
   UnlockedBook: UnlockedBookModel.init(sequelize, Sequelize),
-  Achievement: AchievementModel.init(sequelize, Sequelize)
+  Achievement: AchievementModel.init(sequelize, Sequelize),
+  UserAchievement: UserAchievementModel.init(sequelize, Sequelize)
 };
 
 Object.values(models)

@@ -31,6 +31,13 @@ db.sequelize
         })
         .then(() => {
           return Promise.all(
+            mocks.achievements.map(item => {
+              return db.Achievement.create(item);
+            })
+          );
+        })
+        .then(() => {
+          return Promise.all(
             mocks.mons.map(item => {
               return db.Mon.create(item);
             })
@@ -47,13 +54,6 @@ db.sequelize
           return Promise.all(
             mocks.monImages.map(item => {
               return db.MonImage.create(item);
-            })
-          );
-        })
-        .then(() => {
-          return Promise.all(
-            mocks.achievements.map(item => {
-              return db.Achievement.create(item);
             })
           );
         })

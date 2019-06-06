@@ -7,6 +7,8 @@ import monImages from './monImages';
 import codes from './codes';
 import books from './books';
 import unlockedBooks from './unlockedBooks';
+import achievements from './achievements';
+import userAchievements from './userAchievements';
 
 const router = new Router();
 
@@ -18,5 +20,7 @@ router.use('/mon-images', monImages);
 router.use('/codes', codes);
 router.use('/books', books);
 router.use('/unlocked-books', unlockedBooks);
+router.use('/achievements', achievements);
+router.use('/user-achievements', userAchievements);
 
 export default router;

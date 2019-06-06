@@ -18,11 +18,11 @@ const config = {
   development: {
     port: process.env.PORT || 9999,
     sequelize: {
-      host: '127.0.0.1',
-      database: 'handpokemon',
-      username: 'root',
-      password: 'pikapika',
-      dialect: 'mysql'
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      username: process.env.DB_USER,
+      password: process.env.DB_PW,
+      dialect: process.env.DB_DIALECT
     }
   },
   production: {
@@ -30,11 +30,11 @@ const config = {
   },
   test: {
     sequelize: {
-      host: '127.0.0.1',
-      database: 'handpokemon',
-      username: 'root',
-      password: 'pikapika',
-      dialect: 'mysql'
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      username: process.env.DB_USER,
+      password: process.env.DB_PW,
+      dialect: process.env.DB_DIALECT
     }
   }
 };

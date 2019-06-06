@@ -30,12 +30,11 @@ import migData from './mon-mig.json';
 const getMigData = () => {
   const keys = Object.keys(migData);
   const result = [];
-  let id = 0;
-  keys.forEach(key => {
+  keys.forEach((key, id) => {
     const mon = migData[key];
     mon.monImage.forEach((item, idx) => {
       result.push({
-        id: id++,
+        id: id + 1,
         designer: item.designer,
         url: `https://s3.ap-northeast-2.amazonaws.com/files.handpokemon.com/mon-images/${
           item.fullPath.split('/')[1]

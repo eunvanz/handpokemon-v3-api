@@ -5,8 +5,7 @@ class Achievement extends Sequelize.Model {
     return super.init(
       {
         attrCd: {
-          type: DataTypes.STRING(4),
-          allowNull: false
+          type: DataTypes.STRING(4)
         },
         achievementTypeCd: {
           type: DataTypes.STRING(4),
@@ -17,7 +16,7 @@ class Achievement extends Sequelize.Model {
           allowNull: false
         },
         name: {
-          type: DataTypes.String(20),
+          type: DataTypes.STRING(20),
           allowNull: false
         },
         reward: {
