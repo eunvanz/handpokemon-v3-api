@@ -27,3 +27,8 @@ export const RANK = {
   E: '0407',
   F: '0408'
 };
+
+export const ACHIEVEMENT_TYPE = {
+  COL: '0601',
+  ATTR: '0602'
+};

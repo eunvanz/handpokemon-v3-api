@@ -2,7 +2,7 @@ import express from 'express';
 import Sequelize from 'Sequelize';
 import { concat, shuffle, random } from 'lodash';
 import db from '../models';
-import { GRADE, ROLE } from '../constants/codes';
+import { GRADE } from '../constants/codes';
 import { token } from '../services/passport';
 import {
   getRandomCollectionsByNumberFromMons,
@@ -10,7 +10,7 @@ import {
   getRefreshedUser,
   levelDownCollection
 } from '../libs/hpUtils';
-import { CREDIT_RULE, MIX_RULE } from '../constants/rules';
+import { CREDIT_RULE, MIX_RULE, SPECIAL_MIX_RULE } from '../constants/rules';
 
 const router = express.Router();
 const { Collection, User, Mon, MonImage } = db;
@@ -173,8 +173,6 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
           userCollections,
           userId: user.id
         });
-        console.log('insert', insert);
-        console.log('update', update);
         insert.forEach(async item => {
           try {
             if (item)
@@ -210,13 +208,14 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
         });
         const now = Date.now();
         const diff = now - Number(thisUser.lastPick);
+        const colPoint =
+          thisUser.colPoint +
+          insert.reduce((accm, item) => accm + item.mon.point, 0);
         await User.update(
           Object.assign({}, thisUser, {
             pickCredit: thisUser.pickCredit - repeatCnt,
             lastPick: now - (diff % CREDIT_RULE.PICK.INTERVAL),
-            colPoint:
-              thisUser.colPoint +
-              insert.reduce((accm, item) => accm + item.mon.point, 0)
+            colPoint
           }),
           {
             where: { id: thisUser.id },
@@ -270,8 +269,6 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
 
         if (collections.length !== 2) return next('잘못된 요청입니다.');
 
-        console.log('collections', collections);
-
         collections.forEach(async collection => {
           if (collection.level === 1) {
             await Collection.destroy({
@@ -281,7 +278,6 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
               transaction
             });
             colPointDiff += collection.mon.point * -1;
-            console.log('colPointDiff at destroy', colPointDiff);
           } else {
             await Collection.update(levelDownCollection(collection), {
               where: {
@@ -301,37 +297,65 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
             });
           }
         });
-        console.log('collections', collections);
-        const { gradeCds, chances } = MIX_RULE(
+
+        let mons;
+        // 특정 포켓몬끼리의 교배와 그 외 분기
+        const specialMixResult = SPECIAL_MIX_RULE(
           collections[0].mon,
           collections[1].mon
         );
-        const chancePoint = random(0, 100);
-        let gradeCdIdx = 0;
-        console.log('chances', chances);
-        console.log('chancePoint', chancePoint);
-        chances.forEach((value, idx) => {
-          if (value >= chancePoint) gradeCdIdx = idx;
-        });
-        const mons = await Mon.findAll({
-          where: {
-            gradeCd: gradeCds[gradeCdIdx]
-          },
-          include: [
-            {
-              model: MonImage,
-              as: 'monImages'
+
+        if (specialMixResult) {
+          mons = await Mon.findAll({
+            where: {
+              name: {
+                [opIn]: specialMixResult
+              }
             },
-            {
-              model: Mon,
-              as: 'nextMons'
+            include: [
+              {
+                model: MonImage,
+                as: 'monImages'
+              },
+              {
+                model: Mon,
+                as: 'nextMons'
+              }
+            ]
+          });
+        } else {
+          const { gradeCds, chances } = MIX_RULE(
+            collections[0].mon,
+            collections[1].mon
+          );
+          const chancePoint = random(0, 100);
+          let gradeCdIdx = 0;
+
+          chances.forEach((value, idx) => {
+            if (value >= chancePoint) gradeCdIdx = idx;
+          });
+
+          mons = await Mon.findAll({
+            where: {
+              gradeCd: gradeCds[gradeCdIdx]
+            },
+            include: [
+              {
+                model: MonImage,
+                as: 'monImages'
+              },
+              {
+                model: Mon,
+                as: 'nextMons'
+              }
+            ],
+            transaction,
+            lock: {
+              level: transaction.LOCK.SHARE
             }
-          ],
-          transaction,
-          lock: {
-            level: transaction.LOCK.SHARE
-          }
-        });
+          });
+        }
+
         const userCollections = await Collection.findAll({
           where: {
             userId: user.id
@@ -350,8 +374,6 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
           userCollections,
           userId: user.id
         });
-        console.log('insert', insert);
-        console.log('update', update);
         insert.forEach(async item => {
           try {
             if (item)
@@ -386,7 +408,6 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
           }
         });
         colPointDiff += insert.reduce((accm, item) => accm + item.mon.point, 0);
-        console.log('colPointDiff at final', colPointDiff);
         await User.update(
           Object.assign({}, thisUser, {
             colPoint: thisUser.colPoint + colPointDiff
@@ -448,8 +469,6 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
         )
           return next('잘못된 요청입니다.');
 
-        console.log('collection', collection);
-
         if (collection.level === nextMons[0].requiredLv) {
           await Collection.destroy({
             where: {
@@ -458,7 +477,6 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
             transaction
           });
           colPointDiff += collection.mon.point * -1;
-          console.log('colPointDiff at destroy', colPointDiff);
         } else {
           await Collection.update(
             levelDownCollection(collection, nextMons[0].requiredLv),
@@ -480,7 +498,6 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
             }
           );
         }
-        console.log('collection', collection);
         const mons = await Mon.findAll({
           where: {
             id: {
@@ -520,8 +537,26 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
           userCollections,
           userId: user.id
         });
-        console.log('insert', insert);
-        console.log('update', update);
+
+        // 토중몬이 진화하는 경우 껍질몬 추가
+        if (collection.mon.name === '토중몬') {
+          const kkupzilMon = await Mon.findAll({
+            where: {
+              name: '껍질몬'
+            },
+            transaction
+          });
+          const result = getRandomCollectionsByNumberFromMonsWithUserCollections(
+            {
+              mons: kkupzilMon,
+              userCollections,
+              userId: user.id
+            }
+          );
+          insert.concat(result.insert);
+          update.concat(result.update);
+        }
+
         insert.forEach(async item => {
           try {
             if (item)
@@ -532,6 +567,7 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
             throw new Error(error);
           }
         });
+
         update.forEach(async item => {
           try {
             if (item)
@@ -556,7 +592,6 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
           }
         });
         colPointDiff += insert.reduce((accm, item) => accm + item.mon.point, 0);
-        console.log('colPointDiff at final', colPointDiff);
         await User.update(
           Object.assign({}, thisUser, {
             colPoint: thisUser.colPoint + colPointDiff

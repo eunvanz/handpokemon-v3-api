@@ -5,7 +5,8 @@ import routes from './routes';
 
 const app = express(routes);
 
-const isDev = process.env.NODE_ENV === 'development';
+// const isDev = process.env.NODE_ENV === 'development';
+const isDev = false;
 
 db.sequelize
   .query('SET FOREIGN_KEY_CHECKS = 0')

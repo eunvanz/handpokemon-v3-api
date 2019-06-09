@@ -33,6 +33,11 @@ class User extends Sequelize.Model {
           allowNull: false,
           defaultValue: 0
         },
+        battlePoint: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 1000
+        },
         role: {
           type: DataTypes.STRING(4),
           allowNull: false,
@@ -59,6 +64,21 @@ class User extends Sequelize.Model {
           defaultValue: Date.now()
         },
         pokemoney: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
+        },
+        win: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
+        },
+        lose: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
+        },
+        winInARow: {
           type: DataTypes.INTEGER,
           allowNull: false,
           defaultValue: 0

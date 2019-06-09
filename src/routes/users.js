@@ -1,14 +1,17 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import Sequelize from 'Sequelize';
 
 import db from '../models';
 import { encrypt } from '../services/crypto';
 import { token } from '../services/passport/index';
 import { ROLE, SOCIAL_TYPE } from '../constants/codes';
+import { generatePaginationResult } from '../libs/sequelizeUtils';
 
 const router = express.Router();
 const { User } = db;
+const { gt: opGt } = Sequelize.Op;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -22,6 +25,48 @@ router.get('/', async (req, res, next) => {
 router.get('/token', token({ required: true }), async (req, res, next) => {
   try {
     res.json(req.user);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.get('/rank', async (req, res, next) => {
+  try {
+    const { query } = req;
+    const { curPage, perPage, orderBy } = query;
+    const totalElements = await User.count();
+    const content = await User.findAll({
+      order: [[orderBy, 'DESC']],
+      offset: (Number(curPage) - 1) * Number(perPage),
+      limit: Number(perPage)
+    });
+    res.json(
+      generatePaginationResult({
+        totalElements,
+        curPage,
+        perPage,
+        content
+      })
+    );
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.get('/my-rank', token({ required: true }), async (req, res, next) => {
+  try {
+    const { query, user } = req;
+    const { key } = query;
+    const cnt = await User.count({
+      where: {
+        [key]: {
+          [opGt]: user[key]
+        }
+      }
+    });
+    res.json(cnt + 1);
   } catch (error) {
     console.error(error);
     next(error);

@@ -39,7 +39,7 @@ export const RANK_RULE = {
 export const CREDIT_RULE = {
   PICK: {
     MAX: 12,
-    INTERVAL: 1000 * 5
+    INTERVAL: 1000 * 1
     // INTERVAL: 1000 * 60 * 20
   },
   BATTLE: {
@@ -79,6 +79,22 @@ export const MIX_RULE = (srcMon, tgtMon) => {
       gradeCds: [GRADE.BASIC, GRADE.RARE],
       chances: [100, 40]
     };
+  }
+};
+
+export const SPECIAL_MIX_RULE = (srcMon, tgtMon) => {
+  if (
+    [srcMon.name, tgtMon.name].includes('야도란') &&
+    [srcMon.name, tgtMon.name].incluedes('셀러')
+  ) {
+    return ['야도란', '야도킹'];
+  } else if (
+    [srcMon.name, tgtMon.name].includes('딱정곤') &&
+    [srcMon.name, tgtMon.name].includes('쪼마리')
+  ) {
+    return ['어지리더', '슈바르고'];
+  } else {
+    return null;
   }
 };
 
