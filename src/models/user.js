@@ -2,6 +2,12 @@ import Sequelize from 'sequelize';
 import { ROLE, SOCIAL_TYPE } from '../constants/codes';
 
 class User extends Sequelize.Model {
+  static associate(models) {
+    this.hasMany(models.Achievement, {
+      foreignKey: 'userId',
+      as: 'achievements'
+    });
+  }
   static init(sequelize, DataTypes) {
     return super.init(
       {
@@ -68,17 +74,32 @@ class User extends Sequelize.Model {
           allowNull: false,
           defaultValue: 0
         },
-        win: {
+        attackWin: {
           type: DataTypes.INTEGER,
           allowNull: false,
           defaultValue: 0
         },
-        lose: {
+        attackLose: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
+        },
+        defenseWin: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
+        },
+        defenseLose: {
           type: DataTypes.INTEGER,
           allowNull: false,
           defaultValue: 0
         },
         winInARow: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
+        },
+        maxWinInARow: {
           type: DataTypes.INTEGER,
           allowNull: false,
           defaultValue: 0

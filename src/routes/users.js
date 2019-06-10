@@ -10,7 +10,7 @@ import { ROLE, SOCIAL_TYPE } from '../constants/codes';
 import { generatePaginationResult } from '../libs/sequelizeUtils';
 
 const router = express.Router();
-const { User } = db;
+const { User, Achievement } = db;
 const { gt: opGt } = Sequelize.Op;
 
 router.get('/', async (req, res, next) => {
@@ -75,7 +75,14 @@ router.get('/my-rank', token({ required: true }), async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Achievement,
+          as: 'achievements'
+        }
+      ]
+    });
     if (!user)
       return res.status(404).json({ message: '해당하는 사용자가 없습니다.' });
     res.json(user);

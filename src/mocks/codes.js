@@ -226,5 +226,17 @@ export default [
     masterCdNm: '업적유형',
     detailCd: '0602',
     detailCdNm: '속성수집'
+  },
+  {
+    masterCd: '07',
+    masterCdNm: '아이템유형',
+    detailCd: '0701',
+    detailCdNm: '크레딧충전'
+  },
+  {
+    masterCd: '07',
+    masterCdNm: '아이템유형',
+    detailCd: '0702',
+    detailCdNm: '채집'
   }
 ];
