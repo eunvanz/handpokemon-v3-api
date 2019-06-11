@@ -43,7 +43,7 @@ export default [
     price: 50,
     description:
       '채집크레딧을 최대치까지 즉시 충전합니다. (주의: 누적되지 않음. 한 번에 한 번만 사용할 것)',
-    value: 'colPoint',
+    value: 'pickCredit',
     image:
       'https://s3.ap-northeast-2.amazonaws.com/files.handpokemon.com/item-images/item1.png',
     name: '채집크레딧 충전권',
@@ -54,7 +54,7 @@ export default [
     price: 10,
     description:
       '시합크레딧을 최대치까지 즉시 충전합니다. (주의: 누적되지 않음. 한 번에 한 번만 사용할 것)',
-    value: 'battlePoint',
+    value: 'battleCredit',
     image:
       'https://s3.ap-northeast-2.amazonaws.com/files.handpokemon.com/item-images/item2.png',
     name: '시합크레딧 충전권',

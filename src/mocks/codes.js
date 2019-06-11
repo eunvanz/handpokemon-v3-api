@@ -238,5 +238,41 @@ export default [
     masterCdNm: '아이템유형',
     detailCd: '0702',
     detailCdNm: '채집'
+  },
+  {
+    masterCd: '08',
+    masterCdNm: '리그',
+    detailCd: '0801',
+    detailCdNm: '심해'
+  },
+  {
+    masterCd: '08',
+    masterCdNm: '리그',
+    detailCd: '0802',
+    detailCdNm: '브론즈'
+  },
+  {
+    masterCd: '08',
+    masterCdNm: '리그',
+    detailCd: '0803',
+    detailCdNm: '실버'
+  },
+  {
+    masterCd: '08',
+    masterCdNm: '리그',
+    detailCd: '0804',
+    detailCdNm: '골드'
+  },
+  {
+    masterCd: '08',
+    masterCdNm: '리그',
+    detailCd: '0805',
+    detailCdNm: '다이아'
+  },
+  {
+    masterCd: '08',
+    masterCdNm: '리그',
+    detailCd: '0806',
+    detailCdNm: '챔피온'
   }
 ];

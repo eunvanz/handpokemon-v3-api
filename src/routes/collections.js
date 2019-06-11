@@ -130,6 +130,7 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
         });
         if (thisUser.pickCredit < repeatCnt)
           return next('채집 크레딧이 부족합니다.');
+
         const mons = await Mon.findAll({
           where: {
             gradeCd: {

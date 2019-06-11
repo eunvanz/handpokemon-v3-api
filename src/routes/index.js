@@ -9,6 +9,8 @@ import books from './books';
 import unlockedBooks from './unlockedBooks';
 import achievements from './achievements';
 import userAchievements from './userAchievements';
+import items from './items';
+import userItems from './userItems';
 
 const router = new Router();
 
@@ -22,5 +24,7 @@ router.use('/books', books);
 router.use('/unlocked-books', unlockedBooks);
 router.use('/achievements', achievements);
 router.use('/user-achievements', userAchievements);
+router.use('/user-items', userItems);
+router.use('/items', items);
 
 export default router;

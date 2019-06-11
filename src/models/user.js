@@ -3,9 +3,13 @@ import { ROLE, SOCIAL_TYPE } from '../constants/codes';
 
 class User extends Sequelize.Model {
   static associate(models) {
-    this.hasMany(models.Achievement, {
+    this.hasMany(models.UserAchievement, {
       foreignKey: 'userId',
       as: 'achievements'
+    });
+    this.hasMany(models.Book, {
+      foreignKey: 'userId',
+      as: 'books'
     });
   }
   static init(sequelize, DataTypes) {
@@ -103,6 +107,11 @@ class User extends Sequelize.Model {
           type: DataTypes.INTEGER,
           allowNull: false,
           defaultValue: 0
+        },
+        leagueCd: {
+          type: DataTypes.STRING(4),
+          allowNull: false,
+          defaultValue: '0801'
         }
       },
       {

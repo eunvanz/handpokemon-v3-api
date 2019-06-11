@@ -262,3 +262,82 @@ export const getRefreshedUser = user => {
   );
   return user;
 };
+
+export const pickMon = async ({
+  mons,
+  transaction,
+  Collection,
+  user,
+  User,
+  useCredit,
+  repeatCnt
+}) => {
+  const userCollections = await Collection.findAll({
+    where: {
+      userId: user.id
+    },
+    include: [includeMon, includeMonImages, includeNextMons],
+    transaction,
+    lock: {
+      level: transaction.LOCK.UPDATE
+    }
+  });
+  const {
+    insert,
+    update
+  } = getRandomCollectionsByNumberFromMonsWithUserCollections({
+    repeatCnt,
+    mons,
+    userCollections,
+    userId: user.id
+  });
+  insert.forEach(async item => {
+    try {
+      if (item)
+        await Collection.create(item, {
+          transaction
+        });
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+  update.forEach(async item => {
+    try {
+      if (item)
+        await Collection.update(item, {
+          where: {
+            id: item.id
+          },
+          transaction,
+          fields: [
+            'level',
+            'addedHp',
+            'addedPower',
+            'addedArmor',
+            'addedSPower',
+            'addedSArmor',
+            'addedDex',
+            'addedTotal'
+          ]
+        });
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+  const colPoint =
+    user.colPoint + insert.reduce((accm, item) => accm + item.mon.point, 0);
+  const updateUser = {
+    colPoint
+  };
+  if (useCredit) {
+    const now = Date.now();
+    const diff = now - Number(user.lastPick);
+    updateUser.pickCredit = user.pickCredit - repeatCnt;
+    updateUser.lastPick = now - (diff % CREDIT_RULE.PICK.INTERVAL);
+  }
+  await User.update(updateUser, {
+    where: { id: user.id },
+    transaction
+  });
+  return Promise.resolve(shuffle(concat(insert, update)));
+};

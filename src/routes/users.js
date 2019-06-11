@@ -10,7 +10,15 @@ import { ROLE, SOCIAL_TYPE } from '../constants/codes';
 import { generatePaginationResult } from '../libs/sequelizeUtils';
 
 const router = express.Router();
-const { User, Achievement } = db;
+const {
+  User,
+  UserAchievement,
+  Achievement,
+  Book,
+  Collection,
+  Mon,
+  MonImage
+} = db;
 const { gt: opGt } = Sequelize.Op;
 
 router.get('/', async (req, res, next) => {
@@ -78,8 +86,34 @@ router.get('/:id', async (req, res, next) => {
     const user = await User.findByPk(req.params.id, {
       include: [
         {
-          model: Achievement,
-          as: 'achievements'
+          model: Book,
+          as: 'books',
+          include: [
+            {
+              model: Collection,
+              as: 'col',
+              include: [
+                {
+                  model: Mon,
+                  as: 'mon'
+                },
+                {
+                  model: MonImage,
+                  as: 'monImages'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          model: UserAchievement,
+          as: 'achievements',
+          include: [
+            {
+              model: Achievement,
+              as: 'achievement'
+            }
+          ]
         }
       ]
     });
