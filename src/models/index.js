@@ -11,6 +11,10 @@ import AchievementModel from './achievement';
 import UserAchievementModel from './userAchievement';
 import ItemModel from './item';
 import UserItemModel from './userItem';
+import Workshop from './workshop';
+import Article from './article';
+import Like from './like';
+import Comment from './comment';
 
 const sequelize = new Sequelize(
   sequelizeConfig.database,
@@ -40,7 +44,11 @@ const models = {
   Achievement: AchievementModel.init(sequelize, Sequelize),
   UserAchievement: UserAchievementModel.init(sequelize, Sequelize),
   Item: ItemModel.init(sequelize, Sequelize),
-  UserItem: UserItemModel.init(sequelize, Sequelize)
+  UserItem: UserItemModel.init(sequelize, Sequelize),
+  Workshop: WorkshopModel.init(sequelize, Sequelize),
+  Like: LikeModel.init(sequelize, Sequelize),
+  Article: ArticleModel.init(sequelize, Sequelize),
+  Comment: CommentModel.init(sequelize, Sequelize)
 };
 
 Object.values(models)

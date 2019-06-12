@@ -11,6 +11,7 @@ import achievements from './achievements';
 import userAchievements from './userAchievements';
 import items from './items';
 import userItems from './userItems';
+import workshops from './workshops';
 
 const router = new Router();
 
@@ -26,5 +27,6 @@ router.use('/achievements', achievements);
 router.use('/user-achievements', userAchievements);
 router.use('/user-items', userItems);
 router.use('/items', items);
+router.use('/workshops', workshops);
 
 export default router;
