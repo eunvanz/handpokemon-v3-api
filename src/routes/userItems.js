@@ -14,7 +14,13 @@ router.get('/', token({ required: true }), async (req, res, next) => {
     const userItems = await UserItem.findAll({
       where: {
         userId: req.user.id
-      }
+      },
+      include: [
+        {
+          model: Item,
+          as: 'item'
+        }
+      ]
     });
     res.json(userItems);
   } catch (error) {
@@ -32,7 +38,7 @@ router.post(
       const { itemId } = params;
       const { quantity } = query;
       const result = await db.sequelize.transaction(async transaction => {
-        const userItems = await UserItem.findAll(userItemId, {
+        const userItems = await UserItem.findAll({
           where: {
             itemId,
             used: 0

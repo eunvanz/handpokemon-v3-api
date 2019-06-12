@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
           as: 'monImages'
         }
       ],
-      orderBy: [['id', 'ASC']]
+      order: [['id', 'ASC']]
     });
     res.json(mons);
   } catch (error) {

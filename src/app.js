@@ -58,6 +58,13 @@ db.sequelize
             })
           );
         })
+        .then(() => {
+          return Promise.all(
+            mocks.items.map(item => {
+              return db.Item.create(item);
+            })
+          );
+        })
         .catch(err => {
           console.error(err);
         });

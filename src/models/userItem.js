@@ -21,7 +21,7 @@ class UserItem extends Sequelize.Model {
         used: {
           type: DataTypes.TINYINT,
           allowNull: false,
-          default: 0
+          defaultValue: 0
         }
       },
       {

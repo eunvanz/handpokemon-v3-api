@@ -34,8 +34,8 @@ class Item extends Sequelize.Model {
       },
       {
         sequelize,
-        tableName: 'books',
-        modelName: 'book'
+        tableName: 'items',
+        modelName: 'item'
       }
     );
   }
