@@ -530,7 +530,7 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
             level: transaction.LOCK.UPDATE
           }
         });
-        const {
+        let {
           insert,
           update
         } = getRandomCollectionsByNumberFromMonsWithUserCollections({
@@ -543,19 +543,31 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
         if (collection.mon.name === '토중몬') {
           const kkupzilMon = await Mon.findAll({
             where: {
-              name: '껍질몬'
+              id: 292 // 껍질몬
             },
+            include: [
+              {
+                model: MonImage,
+                as: 'monImages'
+              },
+              {
+                model: Mon,
+                as: 'nextMons'
+              }
+            ],
             transaction
           });
-          const result = getRandomCollectionsByNumberFromMonsWithUserCollections(
+          const kkupzilResult = getRandomCollectionsByNumberFromMonsWithUserCollections(
             {
               mons: kkupzilMon,
               userCollections,
               userId: user.id
             }
           );
-          insert.concat(result.insert);
-          update.concat(result.update);
+          if (kkupzilResult.insert)
+            insert = insert.concat(kkupzilResult.insert);
+          if (kkupzilResult.update)
+            update = update.concat(kkupzilResult.update);
         }
 
         insert.forEach(async item => {

@@ -1,6 +1,6 @@
 {
   "-L-MK6QhWji8QtK0kQ8Y" : {
-    "burf" : [ 1, 1, 1, 1, 1, 1 ],
+    "buff" : [ 1, 1, 1, 1, 1, 1 ],
     "condition" : 100,
     "id" : "-L-MK6QhWji8QtK0kQ8Y",
     "name" : "아기트레이너",
@@ -8,7 +8,7 @@
     "type" : 1
   },
   "-L-MK6W_dktTAqhleXFM" : {
-    "burf" : [ 2, 2, 2, 2, 2, 2 ],
+    "buff" : [ 2, 2, 2, 2, 2, 2 ],
     "condition" : 200,
     "id" : "-L-MK6W_dktTAqhleXFM",
     "name" : "초급트레이너",
@@ -16,7 +16,7 @@
     "type" : 1
   },
   "-L-MK6_AZo92q6MoNaKV" : {
-    "burf" : [ 3, 3, 3, 3, 3, 3 ],
+    "buff" : [ 3, 3, 3, 3, 3, 3 ],
     "condition" : 500,
     "id" : "-L-MK6_AZo92q6MoNaKV",
     "name" : "중급트레이너",
@@ -24,7 +24,7 @@
     "type" : 1
   },
   "-L-MK6cudZxGc036Ladc" : {
-    "burf" : [ 4, 4, 4, 4, 4, 4 ],
+    "buff" : [ 4, 4, 4, 4, 4, 4 ],
     "condition" : 800,
     "id" : "-L-MK6cudZxGc036Ladc",
     "name" : "고급트레이너",
@@ -32,7 +32,7 @@
     "type" : 1
   },
   "-L-MK6gTfD6Tn9NM18DB" : {
-    "burf" : [ 5, 5, 5, 5, 5, 5 ],
+    "buff" : [ 5, 5, 5, 5, 5, 5 ],
     "condition" : 1000,
     "id" : "-L-MK6gTfD6Tn9NM18DB",
     "name" : "특급트레이너",
@@ -40,7 +40,7 @@
     "type" : 1
   },
   "-L-MK6k16tz19WL7SynL" : {
-    "burf" : [ 6, 6, 6, 6, 6, 6 ],
+    "buff" : [ 6, 6, 6, 6, 6, 6 ],
     "condition" : 1200,
     "id" : "-L-MK6k16tz19WL7SynL",
     "name" : "초급레인저",
@@ -48,7 +48,7 @@
     "type" : 1
   },
   "-L-MK6nlh4PeIh1FZdlY" : {
-    "burf" : [ 7, 7, 7, 7, 7, 7 ],
+    "buff" : [ 7, 7, 7, 7, 7, 7 ],
     "condition" : 1500,
     "id" : "-L-MK6nlh4PeIh1FZdlY",
     "name" : "중급레인저",
@@ -56,7 +56,7 @@
     "type" : 1
   },
   "-L-MK6rMAbmGZK-rujNc" : {
-    "burf" : [ 8, 8, 8, 8, 8, 8 ],
+    "buff" : [ 8, 8, 8, 8, 8, 8 ],
     "condition" : 2000,
     "id" : "-L-MK6rMAbmGZK-rujNc",
     "name" : "고급레인저",
@@ -64,7 +64,7 @@
     "type" : 1
   },
   "-L-MK6uwW-Y5LcHZV1Yn" : {
-    "burf" : [ 9, 9, 9, 9, 9, 9 ],
+    "buff" : [ 9, 9, 9, 9, 9, 9 ],
     "condition" : 2500,
     "id" : "-L-MK6uwW-Y5LcHZV1Yn",
     "name" : "특급레인저",
@@ -72,7 +72,7 @@
     "type" : 1
   },
   "-L-MK6yWsNo7C2EHZ5yJ" : {
-    "burf" : [ 10, 10, 10, 10, 10, 10 ],
+    "buff" : [ 10, 10, 10, 10, 10, 10 ],
     "condition" : 3000,
     "id" : "-L-MK6yWsNo7C2EHZ5yJ",
     "name" : "초급짐리더",
@@ -80,7 +80,7 @@
     "type" : 1
   },
   "-L-MK715MO4CUfBCIU9Q" : {
-    "burf" : [ 11, 11, 11, 11, 11, 11 ],
+    "buff" : [ 11, 11, 11, 11, 11, 11 ],
     "condition" : 3500,
     "id" : "-L-MK715MO4CUfBCIU9Q",
     "name" : "중급짐리더",
@@ -88,7 +88,7 @@
     "type" : 1
   },
   "-L-MK74oYxoey5FTH65S" : {
-    "burf" : [ 12, 12, 12, 12, 12, 12 ],
+    "buff" : [ 12, 12, 12, 12, 12, 12 ],
     "condition" : 4000,
     "id" : "-L-MK74oYxoey5FTH65S",
     "name" : "고급짐리더",
@@ -96,7 +96,7 @@
     "type" : 1
   },
   "-L-MK78NxYfbfhP-cGQo" : {
-    "burf" : [ 13, 13, 13, 13, 13, 13 ],
+    "buff" : [ 13, 13, 13, 13, 13, 13 ],
     "condition" : 4500,
     "id" : "-L-MK78NxYfbfhP-cGQo",
     "name" : "특급짐리더",
@@ -104,7 +104,7 @@
     "type" : 1
   },
   "-L-MK7ByrcLI5ErUfm8U" : {
-    "burf" : [ 14, 14, 14, 14, 14, 14 ],
+    "buff" : [ 14, 14, 14, 14, 14, 14 ],
     "condition" : 5000,
     "id" : "-L-MK7ByrcLI5ErUfm8U",
     "name" : "초급챔피언",
@@ -112,7 +112,7 @@
     "type" : 1
   },
   "-L-MK7FX22-lidwTbd4I" : {
-    "burf" : [ 15, 15, 15, 15, 15, 15 ],
+    "buff" : [ 15, 15, 15, 15, 15, 15 ],
     "condition" : 5500,
     "id" : "-L-MK7FX22-lidwTbd4I",
     "name" : "중급챔피언",
@@ -120,7 +120,7 @@
     "type" : 1
   },
   "-L-MK7J6Nt2CZ5er9YUA" : {
-    "burf" : [ 16, 16, 16, 16, 16, 16 ],
+    "buff" : [ 16, 16, 16, 16, 16, 16 ],
     "condition" : 6000,
     "id" : "-L-MK7J6Nt2CZ5er9YUA",
     "name" : "고급챔피언",
@@ -128,7 +128,7 @@
     "type" : 1
   },
   "-L-MK7MjOSCvJpUtgqm2" : {
-    "burf" : [ 17, 17, 17, 17, 17, 17 ],
+    "buff" : [ 17, 17, 17, 17, 17, 17 ],
     "condition" : 6500,
     "id" : "-L-MK7MjOSCvJpUtgqm2",
     "name" : "특급챔피언",
@@ -136,7 +136,7 @@
     "type" : 1
   },
   "-L-MK7Q_lunZgrQph6EM" : {
-    "burf" : [ 18, 18, 18, 18, 18, 18 ],
+    "buff" : [ 18, 18, 18, 18, 18, 18 ],
     "condition" : 7000,
     "id" : "-L-MK7Q_lunZgrQph6EM",
     "name" : "초급마스터",
@@ -144,7 +144,7 @@
     "type" : 1
   },
   "-L-MK7UDR2hqYBu0PjDh" : {
-    "burf" : [ 19, 19, 19, 19, 19, 19 ],
+    "buff" : [ 19, 19, 19, 19, 19, 19 ],
     "condition" : 7500,
     "id" : "-L-MK7UDR2hqYBu0PjDh",
     "name" : "중급마스터",
@@ -152,7 +152,7 @@
     "type" : 1
   },
   "-L-MK7Xov3YJpj559uhe" : {
-    "burf" : [ 20, 20, 20, 20, 20, 20 ],
+    "buff" : [ 20, 20, 20, 20, 20, 20 ],
     "condition" : 8000,
     "id" : "-L-MK7Xov3YJpj559uhe",
     "name" : "고급마스터",
@@ -160,7 +160,7 @@
     "type" : 1
   },
   "-L-MK7aOCsAZfO5f9zU0" : {
-    "burf" : [ 21, 21, 21, 21, 21, 21 ],
+    "buff" : [ 21, 21, 21, 21, 21, 21 ],
     "condition" : 8500,
     "id" : "-L-MK7aOCsAZfO5f9zU0",
     "name" : "특급마스터",
@@ -169,7 +169,7 @@
   },
   "-L-MK7e-IYhY3vuc_hND" : {
     "attr" : "노말",
-    "burf" : [ 0, 1, 1, 0, 0, 3 ],
+    "buff" : [ 0, 1, 1, 0, 0, 3 ],
     "condition" : 16,
     "id" : "-L-MK7e-IYhY3vuc_hND",
     "name" : "노말수집가",
@@ -178,7 +178,7 @@
   },
   "-L-MK7heZs29Lt7wX2kB" : {
     "attr" : "노말",
-    "burf" : [ 0, 2, 2, 0, 0, 6 ],
+    "buff" : [ 0, 2, 2, 0, 0, 6 ],
     "condition" : 32,
     "id" : "-L-MK7heZs29Lt7wX2kB",
     "name" : "노말애호가",
@@ -187,7 +187,7 @@
   },
   "-L-MK7lKh6emRN-l-Z3J" : {
     "attr" : "노말",
-    "burf" : [ 0, 3, 3, 0, 0, 9 ],
+    "buff" : [ 0, 3, 3, 0, 0, 9 ],
     "condition" : 48,
     "id" : "-L-MK7lKh6emRN-l-Z3J",
     "name" : "노말매니아",
@@ -196,7 +196,7 @@
   },
   "-L-MK7p1OQJ_1c3Tzhrx" : {
     "attr" : "노말",
-    "burf" : [ 0, 4, 4, 0, 0, 12 ],
+    "buff" : [ 0, 4, 4, 0, 0, 12 ],
     "condition" : 64,
     "id" : "-L-MK7p1OQJ_1c3Tzhrx",
     "name" : "노말짐리더",
@@ -205,7 +205,7 @@
   },
   "-L-MK7saWtAZQH5f_ryT" : {
     "attr" : "노말",
-    "burf" : [ 0, 5, 5, 0, 0, 15 ],
+    "buff" : [ 0, 5, 5, 0, 0, 15 ],
     "condition" : 80,
     "id" : "-L-MK7saWtAZQH5f_ryT",
     "name" : "노말챔피언",
@@ -214,7 +214,7 @@
   },
   "-L-MK7wAiaSCPO3cgl1N" : {
     "attr" : "노말",
-    "burf" : [ 0, 8, 8, 0, 0, 24 ],
+    "buff" : [ 0, 8, 8, 0, 0, 24 ],
     "condition" : 100,
     "id" : "-L-MK7wAiaSCPO3cgl1N",
     "name" : "노말마스터",
@@ -223,7 +223,7 @@
   },
   "-L-MK7zl5MxatrafEPyT" : {
     "attr" : "불꽃",
-    "burf" : [ 0, 2, 2, 1, 0, 0 ],
+    "buff" : [ 0, 2, 2, 1, 0, 0 ],
     "condition" : 11,
     "id" : "-L-MK7zl5MxatrafEPyT",
     "name" : "불꽃수집가",
@@ -232,7 +232,7 @@
   },
   "-L-MK82M_cEwmb23d8Ig" : {
     "attr" : "불꽃",
-    "burf" : [ 0, 4, 4, 2, 0, 0 ],
+    "buff" : [ 0, 4, 4, 2, 0, 0 ],
     "condition" : 22,
     "id" : "-L-MK82M_cEwmb23d8Ig",
     "name" : "불꽃애호가",
@@ -241,7 +241,7 @@
   },
   "-L-MK85z5ZTa8f4rwW0G" : {
     "attr" : "불꽃",
-    "burf" : [ 0, 6, 6, 3, 0, 0 ],
+    "buff" : [ 0, 6, 6, 3, 0, 0 ],
     "condition" : 33,
     "id" : "-L-MK85z5ZTa8f4rwW0G",
     "name" : "불꽃매니아",
@@ -250,7 +250,7 @@
   },
   "-L-MK89b-CKKtmc4G_7p" : {
     "attr" : "불꽃",
-    "burf" : [ 0, 8, 8, 4, 0, 0 ],
+    "buff" : [ 0, 8, 8, 4, 0, 0 ],
     "condition" : 44,
     "id" : "-L-MK89b-CKKtmc4G_7p",
     "name" : "불꽃짐리더",
@@ -259,7 +259,7 @@
   },
   "-L-MK8DCeQEyRF4uJ1JA" : {
     "attr" : "불꽃",
-    "burf" : [ 0, 10, 10, 5, 0, 0 ],
+    "buff" : [ 0, 10, 10, 5, 0, 0 ],
     "condition" : 55,
     "id" : "-L-MK8DCeQEyRF4uJ1JA",
     "name" : "불꽃챔피언",
@@ -268,7 +268,7 @@
   },
   "-L-MK8GmWsslxn16GWxu" : {
     "attr" : "불꽃",
-    "burf" : [ 0, 16, 16, 8, 0, 0 ],
+    "buff" : [ 0, 16, 16, 8, 0, 0 ],
     "condition" : 65,
     "id" : "-L-MK8GmWsslxn16GWxu",
     "name" : "불꽃마스터",
@@ -277,7 +277,7 @@
   },
   "-L-MK8KPL7zZCgCoMziy" : {
     "attr" : "물",
-    "burf" : [ 2, 0, 1, 0, 2, 0 ],
+    "buff" : [ 2, 0, 1, 0, 2, 0 ],
     "condition" : 21,
     "id" : "-L-MK8KPL7zZCgCoMziy",
     "name" : "물수집가",
@@ -286,7 +286,7 @@
   },
   "-L-MK8OBkrMyACQOWjPt" : {
     "attr" : "물",
-    "burf" : [ 4, 0, 2, 0, 4, 0 ],
+    "buff" : [ 4, 0, 2, 0, 4, 0 ],
     "condition" : 42,
     "id" : "-L-MK8OBkrMyACQOWjPt",
     "name" : "물애호가",
@@ -295,7 +295,7 @@
   },
   "-L-MK8Rv0pRSYmJO3XAd" : {
     "attr" : "물",
-    "burf" : [ 6, 0, 3, 0, 6, 0 ],
+    "buff" : [ 6, 0, 3, 0, 6, 0 ],
     "condition" : 63,
     "id" : "-L-MK8Rv0pRSYmJO3XAd",
     "name" : "물매니아",
@@ -304,7 +304,7 @@
   },
   "-L-MK8Vin21wcBvAvJrd" : {
     "attr" : "물",
-    "burf" : [ 8, 0, 4, 0, 8, 0 ],
+    "buff" : [ 8, 0, 4, 0, 8, 0 ],
     "condition" : 84,
     "id" : "-L-MK8Vin21wcBvAvJrd",
     "name" : "물짐리더",
@@ -313,7 +313,7 @@
   },
   "-L-MK8ZNu5QKLU_SgyO9" : {
     "attr" : "물",
-    "burf" : [ 10, 0, 5, 0, 10, 0 ],
+    "buff" : [ 10, 0, 5, 0, 10, 0 ],
     "condition" : 105,
     "id" : "-L-MK8ZNu5QKLU_SgyO9",
     "name" : "물챔피언",
@@ -322,7 +322,7 @@
   },
   "-L-MK8bw-g63y8m9Ltnm" : {
     "attr" : "물",
-    "burf" : [ 16, 0, 8, 0, 16, 0 ],
+    "buff" : [ 16, 0, 8, 0, 16, 0 ],
     "condition" : 123,
     "id" : "-L-MK8bw-g63y8m9Ltnm",
     "name" : "물마스터",
@@ -331,7 +331,7 @@
   },
   "-L-MK8fZaFbObmBvdoE0" : {
     "attr" : "전기",
-    "burf" : [ 4, 0, 0, 0, 1, 0 ],
+    "buff" : [ 4, 0, 0, 0, 1, 0 ],
     "condition" : 9,
     "id" : "-L-MK8fZaFbObmBvdoE0",
     "name" : "전기수집가",
@@ -340,7 +340,7 @@
   },
   "-L-MK8jBDLFCuVQu9XMR" : {
     "attr" : "전기",
-    "burf" : [ 8, 0, 0, 0, 2, 0 ],
+    "buff" : [ 8, 0, 0, 0, 2, 0 ],
     "condition" : 18,
     "id" : "-L-MK8jBDLFCuVQu9XMR",
     "name" : "전기애호가",
@@ -349,7 +349,7 @@
   },
   "-L-MK8mn0obyrPO6zrT2" : {
     "attr" : "전기",
-    "burf" : [ 12, 0, 0, 0, 3, 0 ],
+    "buff" : [ 12, 0, 0, 0, 3, 0 ],
     "condition" : 27,
     "id" : "-L-MK8mn0obyrPO6zrT2",
     "name" : "전기매니아",
@@ -358,7 +358,7 @@
   },
   "-L-MK8qOBWpataa2vLu7" : {
     "attr" : "전기",
-    "burf" : [ 16, 0, 0, 0, 4, 0 ],
+    "buff" : [ 16, 0, 0, 0, 4, 0 ],
     "condition" : 36,
     "id" : "-L-MK8qOBWpataa2vLu7",
     "name" : "전기짐리더",
@@ -367,7 +367,7 @@
   },
   "-L-MK8u4hSilHkV8BvXw" : {
     "attr" : "전기",
-    "burf" : [ 20, 0, 0, 0, 5, 0 ],
+    "buff" : [ 20, 0, 0, 0, 5, 0 ],
     "condition" : 45,
     "id" : "-L-MK8u4hSilHkV8BvXw",
     "name" : "전기챔피언",
@@ -376,7 +376,7 @@
   },
   "-L-MK8xkx7K_nmiM7ipS" : {
     "attr" : "전기",
-    "burf" : [ 32, 0, 0, 0, 8, 0 ],
+    "buff" : [ 32, 0, 0, 0, 8, 0 ],
     "condition" : 49,
     "id" : "-L-MK8xkx7K_nmiM7ipS",
     "name" : "전기마스터",
@@ -385,7 +385,7 @@
   },
   "-L-MK90Ls6V9z6uKAeQb" : {
     "attr" : "풀",
-    "burf" : [ 0, 3, 0, 2, 0, 0 ],
+    "buff" : [ 0, 3, 0, 2, 0, 0 ],
     "condition" : 15,
     "id" : "-L-MK90Ls6V9z6uKAeQb",
     "name" : "풀수집가",
@@ -394,7 +394,7 @@
   },
   "-L-MK946-GcvaNSE0YMY" : {
     "attr" : "풀",
-    "burf" : [ 0, 6, 0, 4, 0, 0 ],
+    "buff" : [ 0, 6, 0, 4, 0, 0 ],
     "condition" : 30,
     "id" : "-L-MK946-GcvaNSE0YMY",
     "name" : "풀애호가",
@@ -403,7 +403,7 @@
   },
   "-L-MK97fwGeEwCtTIUuu" : {
     "attr" : "풀",
-    "burf" : [ 0, 9, 0, 6, 0, 0 ],
+    "buff" : [ 0, 9, 0, 6, 0, 0 ],
     "condition" : 45,
     "id" : "-L-MK97fwGeEwCtTIUuu",
     "name" : "풀매니아",
@@ -412,7 +412,7 @@
   },
   "-L-MK9BHQaAFT8682yS1" : {
     "attr" : "풀",
-    "burf" : [ 0, 12, 0, 8, 0, 0 ],
+    "buff" : [ 0, 12, 0, 8, 0, 0 ],
     "condition" : 60,
     "id" : "-L-MK9BHQaAFT8682yS1",
     "name" : "풀짐리더",
@@ -421,7 +421,7 @@
   },
   "-L-MK9ErdIIjGTzXMOMG" : {
     "attr" : "풀",
-    "burf" : [ 0, 15, 0, 10, 0, 0 ],
+    "buff" : [ 0, 15, 0, 10, 0, 0 ],
     "condition" : 75,
     "id" : "-L-MK9ErdIIjGTzXMOMG",
     "name" : "풀챔피언",
@@ -430,7 +430,7 @@
   },
   "-L-MK9I_5k2c593dvE9p" : {
     "attr" : "풀",
-    "burf" : [ 0, 24, 0, 16, 0, 0 ],
+    "buff" : [ 0, 24, 0, 16, 0, 0 ],
     "condition" : 89,
     "id" : "-L-MK9I_5k2c593dvE9p",
     "name" : "풀마스터",
@@ -439,7 +439,7 @@
   },
   "-L-MK9M9CdVhdqn-rNxB" : {
     "attr" : "얼음",
-    "burf" : [ 1, 1, 1, 0, 0, 2 ],
+    "buff" : [ 1, 1, 1, 0, 0, 2 ],
     "condition" : 7,
     "id" : "-L-MK9M9CdVhdqn-rNxB",
     "name" : "얼음수집가",
@@ -448,7 +448,7 @@
   },
   "-L-MK9PniqbKeobwQ66k" : {
     "attr" : "얼음",
-    "burf" : [ 2, 2, 2, 0, 0, 4 ],
+    "buff" : [ 2, 2, 2, 0, 0, 4 ],
     "condition" : 14,
     "id" : "-L-MK9PniqbKeobwQ66k",
     "name" : "얼음애호가",
@@ -457,7 +457,7 @@
   },
   "-L-MK9TOcn8xlfAtyzFE" : {
     "attr" : "얼음",
-    "burf" : [ 3, 3, 3, 0, 0, 6 ],
+    "buff" : [ 3, 3, 3, 0, 0, 6 ],
     "condition" : 21,
     "id" : "-L-MK9TOcn8xlfAtyzFE",
     "name" : "얼음매니아",
@@ -466,7 +466,7 @@
   },
   "-L-MK9XEFp6mbPcKEijh" : {
     "attr" : "얼음",
-    "burf" : [ 4, 4, 4, 0, 0, 8 ],
+    "buff" : [ 4, 4, 4, 0, 0, 8 ],
     "condition" : 28,
     "id" : "-L-MK9XEFp6mbPcKEijh",
     "name" : "얼음짐리더",
@@ -475,7 +475,7 @@
   },
   "-L-MK9_oar1SD90Wl6WP" : {
     "attr" : "얼음",
-    "burf" : [ 5, 5, 5, 0, 0, 10 ],
+    "buff" : [ 5, 5, 5, 0, 0, 10 ],
     "condition" : 35,
     "id" : "-L-MK9_oar1SD90Wl6WP",
     "name" : "얼음챔피언",
@@ -484,7 +484,7 @@
   },
   "-L-MK9db3h_C6AgFV9Pk" : {
     "attr" : "얼음",
-    "burf" : [ 8, 8, 8, 0, 0, 16 ],
+    "buff" : [ 8, 8, 8, 0, 0, 16 ],
     "condition" : 39,
     "id" : "-L-MK9db3h_C6AgFV9Pk",
     "name" : "얼음마스터",
@@ -493,7 +493,7 @@
   },
   "-L-MK9hBP4DTrUPcuuhP" : {
     "attr" : "비행",
-    "burf" : [ 0, 0, 1, 3, 1, 0 ],
+    "buff" : [ 0, 0, 1, 3, 1, 0 ],
     "condition" : 17,
     "id" : "-L-MK9hBP4DTrUPcuuhP",
     "name" : "비행수집가",
@@ -502,7 +502,7 @@
   },
   "-L-MK9kkJlsVuFQAwAz9" : {
     "attr" : "비행",
-    "burf" : [ 0, 0, 2, 6, 2, 0 ],
+    "buff" : [ 0, 0, 2, 6, 2, 0 ],
     "condition" : 34,
     "id" : "-L-MK9kkJlsVuFQAwAz9",
     "name" : "비행애호가",
@@ -511,7 +511,7 @@
   },
   "-L-MK9oKuOXRymGO6lSQ" : {
     "attr" : "비행",
-    "burf" : [ 0, 0, 3, 9, 3, 0 ],
+    "buff" : [ 0, 0, 3, 9, 3, 0 ],
     "condition" : 51,
     "id" : "-L-MK9oKuOXRymGO6lSQ",
     "name" : "비행매니아",
@@ -520,7 +520,7 @@
   },
   "-L-MK9s1i2RcHZA8KPP9" : {
     "attr" : "비행",
-    "burf" : [ 0, 0, 4, 12, 4, 0 ],
+    "buff" : [ 0, 0, 4, 12, 4, 0 ],
     "condition" : 68,
     "id" : "-L-MK9s1i2RcHZA8KPP9",
     "name" : "비행짐리더",
@@ -529,7 +529,7 @@
   },
   "-L-MK9vhMjcBfNw90_w_" : {
     "attr" : "비행",
-    "burf" : [ 0, 0, 5, 15, 5, 0 ],
+    "buff" : [ 0, 0, 5, 15, 5, 0 ],
     "condition" : 85,
     "id" : "-L-MK9vhMjcBfNw90_w_",
     "name" : "비행챔피언",
@@ -538,7 +538,7 @@
   },
   "-L-MK9zNXcGUSvEjJBFo" : {
     "attr" : "비행",
-    "burf" : [ 0, 0, 8, 24, 8, 0 ],
+    "buff" : [ 0, 0, 8, 24, 8, 0 ],
     "condition" : 98,
     "id" : "-L-MK9zNXcGUSvEjJBFo",
     "name" : "비행마스터",
@@ -547,7 +547,7 @@
   },
   "-L-MKA20oYNLERpGyZBp" : {
     "attr" : "요정",
-    "burf" : [ 1, 3, 1, 0, 0, 0 ],
+    "buff" : [ 1, 3, 1, 0, 0, 0 ],
     "condition" : 7,
     "id" : "-L-MKA20oYNLERpGyZBp",
     "name" : "요정수집가",
@@ -556,7 +556,7 @@
   },
   "-L-MKA65A-PMSIrQBgQY" : {
     "attr" : "요정",
-    "burf" : [ 2, 6, 2, 0, 0, 0 ],
+    "buff" : [ 2, 6, 2, 0, 0, 0 ],
     "condition" : 14,
     "id" : "-L-MKA65A-PMSIrQBgQY",
     "name" : "요정애호가",
@@ -565,7 +565,7 @@
   },
   "-L-MKA9fnLRGszF6zq6w" : {
     "attr" : "요정",
-    "burf" : [ 3, 9, 3, 0, 0, 0 ],
+    "buff" : [ 3, 9, 3, 0, 0, 0 ],
     "condition" : 21,
     "id" : "-L-MKA9fnLRGszF6zq6w",
     "name" : "요정매니아",
@@ -574,7 +574,7 @@
   },
   "-L-MKADHJSMCicC79MbE" : {
     "attr" : "요정",
-    "burf" : [ 4, 12, 4, 0, 0, 0 ],
+    "buff" : [ 4, 12, 4, 0, 0, 0 ],
     "condition" : 28,
     "id" : "-L-MKADHJSMCicC79MbE",
     "name" : "요정짐리더",
@@ -583,7 +583,7 @@
   },
   "-L-MKAGrUFS7HuzsQd_Q" : {
     "attr" : "요정",
-    "burf" : [ 5, 15, 5, 0, 0, 0 ],
+    "buff" : [ 5, 15, 5, 0, 0, 0 ],
     "condition" : 35,
     "id" : "-L-MKAGrUFS7HuzsQd_Q",
     "name" : "요정챔피언",
@@ -592,7 +592,7 @@
   },
   "-L-MKAKUkPdYSckUcmL8" : {
     "attr" : "요정",
-    "burf" : [ 8, 24, 8, 0, 0, 0 ],
+    "buff" : [ 8, 24, 8, 0, 0, 0 ],
     "condition" : 41,
     "id" : "-L-MKAKUkPdYSckUcmL8",
     "name" : "요정마스터",
@@ -601,7 +601,7 @@
   },
   "-L-MKAOB6sQ-vl-MXDvk" : {
     "attr" : "땅",
-    "burf" : [ 1, 2, 0, 1, 1, 0 ],
+    "buff" : [ 1, 2, 0, 1, 1, 0 ],
     "condition" : 11,
     "id" : "-L-MKAOB6sQ-vl-MXDvk",
     "name" : "땅수집가",
@@ -610,7 +610,7 @@
   },
   "-L-MKARmXR1f8Fg11nHd" : {
     "attr" : "땅",
-    "burf" : [ 2, 4, 0, 2, 2, 0 ],
+    "buff" : [ 2, 4, 0, 2, 2, 0 ],
     "condition" : 22,
     "id" : "-L-MKARmXR1f8Fg11nHd",
     "name" : "땅애호가",
@@ -619,7 +619,7 @@
   },
   "-L-MKAVO657-VGKqQjAF" : {
     "attr" : "땅",
-    "burf" : [ 3, 6, 0, 3, 3, 0 ],
+    "buff" : [ 3, 6, 0, 3, 3, 0 ],
     "condition" : 33,
     "id" : "-L-MKAVO657-VGKqQjAF",
     "name" : "땅매니아",
@@ -628,7 +628,7 @@
   },
   "-L-MKAYyWffr6Z1kBtxU" : {
     "attr" : "땅",
-    "burf" : [ 4, 8, 0, 4, 4, 0 ],
+    "buff" : [ 4, 8, 0, 4, 4, 0 ],
     "condition" : 44,
     "id" : "-L-MKAYyWffr6Z1kBtxU",
     "name" : "땅짐리더",
@@ -637,7 +637,7 @@
   },
   "-L-MKAbYA4h4Yue8fLY-" : {
     "attr" : "땅",
-    "burf" : [ 5, 10, 0, 5, 5, 0 ],
+    "buff" : [ 5, 10, 0, 5, 5, 0 ],
     "condition" : 55,
     "id" : "-L-MKAbYA4h4Yue8fLY-",
     "name" : "땅챔피언",
@@ -646,7 +646,7 @@
   },
   "-L-MKAfA3VP9FeebXzB4" : {
     "attr" : "땅",
-    "burf" : [ 8, 16, 0, 8, 8, 0 ],
+    "buff" : [ 8, 16, 0, 8, 8, 0 ],
     "condition" : 67,
     "id" : "-L-MKAfA3VP9FeebXzB4",
     "name" : "땅마스터",
@@ -655,7 +655,7 @@
   },
   "-L-MKAimJHw7SkW9LENU" : {
     "attr" : "독",
-    "burf" : [ 0, 0, 0, 1, 3, 1 ],
+    "buff" : [ 0, 0, 0, 1, 3, 1 ],
     "condition" : 11,
     "id" : "-L-MKAimJHw7SkW9LENU",
     "name" : "독수집가",
@@ -664,7 +664,7 @@
   },
   "-L-MKB4H3rXMgw669uO3" : {
     "attr" : "독",
-    "burf" : [ 0, 0, 0, 2, 6, 2 ],
+    "buff" : [ 0, 0, 0, 2, 6, 2 ],
     "condition" : 22,
     "id" : "-L-MKB4H3rXMgw669uO3",
     "name" : "독애호가",
@@ -673,7 +673,7 @@
   },
   "-L-MKB7qzNYKFi6_j7zw" : {
     "attr" : "독",
-    "burf" : [ 0, 0, 0, 3, 9, 3 ],
+    "buff" : [ 0, 0, 0, 3, 9, 3 ],
     "condition" : 33,
     "id" : "-L-MKB7qzNYKFi6_j7zw",
     "name" : "독매니아",
@@ -682,7 +682,7 @@
   },
   "-L-MKBBRtdhAflsFEnlF" : {
     "attr" : "독",
-    "burf" : [ 0, 0, 0, 4, 12, 4 ],
+    "buff" : [ 0, 0, 0, 4, 12, 4 ],
     "condition" : 44,
     "id" : "-L-MKBBRtdhAflsFEnlF",
     "name" : "독짐리더",
@@ -691,7 +691,7 @@
   },
   "-L-MKBF32nInxyoVFNok" : {
     "attr" : "독",
-    "burf" : [ 0, 0, 0, 5, 15, 5 ],
+    "buff" : [ 0, 0, 0, 5, 15, 5 ],
     "condition" : 55,
     "id" : "-L-MKBF32nInxyoVFNok",
     "name" : "독챔피언",
@@ -700,7 +700,7 @@
   },
   "-L-MKBIe9OrQ-v4lMe-p" : {
     "attr" : "독",
-    "burf" : [ 0, 0, 0, 8, 24, 8 ],
+    "buff" : [ 0, 0, 0, 8, 24, 8 ],
     "condition" : 62,
     "id" : "-L-MKBIe9OrQ-v4lMe-p",
     "name" : "독마스터",
@@ -709,7 +709,7 @@
   },
   "-L-MKBMIKRFaqbedjkRa" : {
     "attr" : "격투",
-    "burf" : [ 0, 0, 1, 2, 1, 1 ],
+    "buff" : [ 0, 0, 1, 2, 1, 1 ],
     "condition" : 9,
     "id" : "-L-MKBMIKRFaqbedjkRa",
     "name" : "격투수집가",
@@ -718,7 +718,7 @@
   },
   "-L-MKBQ25CNuqBLoJliN" : {
     "attr" : "격투",
-    "burf" : [ 0, 0, 2, 4, 2, 2 ],
+    "buff" : [ 0, 0, 2, 4, 2, 2 ],
     "condition" : 18,
     "id" : "-L-MKBQ25CNuqBLoJliN",
     "name" : "격투애호가",
@@ -727,7 +727,7 @@
   },
   "-L-MKBTe43R8PHi4bZS0" : {
     "attr" : "격투",
-    "burf" : [ 0, 0, 3, 6, 3, 3 ],
+    "buff" : [ 0, 0, 3, 6, 3, 3 ],
     "condition" : 27,
     "id" : "-L-MKBTe43R8PHi4bZS0",
     "name" : "격투매니아",
@@ -736,7 +736,7 @@
   },
   "-L-MKBXEOfQBkDYARHC3" : {
     "attr" : "격투",
-    "burf" : [ 0, 0, 4, 8, 4, 4 ],
+    "buff" : [ 0, 0, 4, 8, 4, 4 ],
     "condition" : 36,
     "id" : "-L-MKBXEOfQBkDYARHC3",
     "name" : "격투짐리더",
@@ -745,7 +745,7 @@
   },
   "-L-MKB_nGTzpzBNGTzPv" : {
     "attr" : "격투",
-    "burf" : [ 0, 0, 5, 10, 5, 5 ],
+    "buff" : [ 0, 0, 5, 10, 5, 5 ],
     "condition" : 45,
     "id" : "-L-MKB_nGTzpzBNGTzPv",
     "name" : "격투챔피언",
@@ -754,7 +754,7 @@
   },
   "-L-MKBdMZCHaiJG-rbGE" : {
     "attr" : "격투",
-    "burf" : [ 0, 0, 8, 16, 8, 8 ],
+    "buff" : [ 0, 0, 8, 16, 8, 8 ],
     "condition" : 52,
     "id" : "-L-MKBdMZCHaiJG-rbGE",
     "name" : "격투마스터",
@@ -763,7 +763,7 @@
   },
   "-L-MKBgwEUzokGIyVbnF" : {
     "attr" : "염력",
-    "burf" : [ 1, 2, 0, 0, 2, 0 ],
+    "buff" : [ 1, 2, 0, 0, 2, 0 ],
     "condition" : 15,
     "id" : "-L-MKBgwEUzokGIyVbnF",
     "name" : "염력수집가",
@@ -772,7 +772,7 @@
   },
   "-L-MKBkW3DFfQyCxScB_" : {
     "attr" : "염력",
-    "burf" : [ 2, 4, 0, 0, 4, 0 ],
+    "buff" : [ 2, 4, 0, 0, 4, 0 ],
     "condition" : 30,
     "id" : "-L-MKBkW3DFfQyCxScB_",
     "name" : "염력애호가",
@@ -781,7 +781,7 @@
   },
   "-L-MKBo64bv539dBV4Ug" : {
     "attr" : "염력",
-    "burf" : [ 3, 6, 0, 0, 6, 0 ],
+    "buff" : [ 3, 6, 0, 0, 6, 0 ],
     "condition" : 45,
     "id" : "-L-MKBo64bv539dBV4Ug",
     "name" : "염력매니아",
@@ -790,7 +790,7 @@
   },
   "-L-MKBrfPke3mkWTTlQ9" : {
     "attr" : "염력",
-    "burf" : [ 4, 8, 0, 0, 8, 0 ],
+    "buff" : [ 4, 8, 0, 0, 8, 0 ],
     "condition" : 60,
     "id" : "-L-MKBrfPke3mkWTTlQ9",
     "name" : "염력짐리더",
@@ -799,7 +799,7 @@
   },
   "-L-MKBvIzmNppbXWSYbL" : {
     "attr" : "염력",
-    "burf" : [ 5, 10, 0, 0, 10, 0 ],
+    "buff" : [ 5, 10, 0, 0, 10, 0 ],
     "condition" : 75,
     "id" : "-L-MKBvIzmNppbXWSYbL",
     "name" : "염력챔피언",
@@ -808,7 +808,7 @@
   },
   "-L-MKByyF71gZybA8oqb" : {
     "attr" : "염력",
-    "burf" : [ 8, 16, 0, 0, 16, 0 ],
+    "buff" : [ 8, 16, 0, 0, 16, 0 ],
     "condition" : 89,
     "id" : "-L-MKByyF71gZybA8oqb",
     "name" : "염력마스터",
@@ -817,7 +817,7 @@
   },
   "-L-MKC1_6Cr-b2OI3rcw" : {
     "attr" : "벌레",
-    "burf" : [ 2, 0, 2, 0, 1, 0 ],
+    "buff" : [ 2, 0, 2, 0, 1, 0 ],
     "condition" : 12,
     "id" : "-L-MKC1_6Cr-b2OI3rcw",
     "name" : "벌레수집가",
@@ -826,7 +826,7 @@
   },
   "-L-MKC5A288m2fEJempI" : {
     "attr" : "벌레",
-    "burf" : [ 4, 0, 4, 0, 2, 0 ],
+    "buff" : [ 4, 0, 4, 0, 2, 0 ],
     "condition" : 24,
     "id" : "-L-MKC5A288m2fEJempI",
     "name" : "벌레애호가",
@@ -835,7 +835,7 @@
   },
   "-L-MKC8llXbZLnOwOFbu" : {
     "attr" : "벌레",
-    "burf" : [ 6, 0, 6, 0, 3, 0 ],
+    "buff" : [ 6, 0, 6, 0, 3, 0 ],
     "condition" : 36,
     "id" : "-L-MKC8llXbZLnOwOFbu",
     "name" : "벌레매니아",
@@ -844,7 +844,7 @@
   },
   "-L-MKCCLFGqj0dpMzO-F" : {
     "attr" : "벌레",
-    "burf" : [ 8, 0, 8, 0, 4, 0 ],
+    "buff" : [ 8, 0, 8, 0, 4, 0 ],
     "condition" : 48,
     "id" : "-L-MKCCLFGqj0dpMzO-F",
     "name" : "벌레짐리더",
@@ -853,7 +853,7 @@
   },
   "-L-MKCFuHoGr-imo3wKM" : {
     "attr" : "벌레",
-    "burf" : [ 10, 0, 10, 0, 5, 0 ],
+    "buff" : [ 10, 0, 10, 0, 5, 0 ],
     "condition" : 60,
     "id" : "-L-MKCFuHoGr-imo3wKM",
     "name" : "벌레챔피언",
@@ -862,7 +862,7 @@
   },
   "-L-MKCJVSQA_fp5Nda_i" : {
     "attr" : "벌레",
-    "burf" : [ 16, 0, 16, 0, 8, 0 ],
+    "buff" : [ 16, 0, 16, 0, 8, 0 ],
     "condition" : 72,
     "id" : "-L-MKCJVSQA_fp5Nda_i",
     "name" : "벌레마스터",
@@ -871,7 +871,7 @@
   },
   "-L-MKCN2p0IMoVIjUW46" : {
     "attr" : "바위",
-    "burf" : [ 0, 0, 0, 2, 0, 3 ],
+    "buff" : [ 0, 0, 0, 2, 0, 3 ],
     "condition" : 10,
     "id" : "-L-MKCN2p0IMoVIjUW46",
     "name" : "바위수집가",
@@ -880,7 +880,7 @@
   },
   "-L-MKCQq3fSwZOLxo22q" : {
     "attr" : "바위",
-    "burf" : [ 0, 0, 0, 4, 0, 6 ],
+    "buff" : [ 0, 0, 0, 4, 0, 6 ],
     "condition" : 20,
     "id" : "-L-MKCQq3fSwZOLxo22q",
     "name" : "바위애호가",
@@ -889,7 +889,7 @@
   },
   "-L-MKCURoxMFydLwtPQc" : {
     "attr" : "바위",
-    "burf" : [ 0, 0, 0, 6, 0, 9 ],
+    "buff" : [ 0, 0, 0, 6, 0, 9 ],
     "condition" : 30,
     "id" : "-L-MKCURoxMFydLwtPQc",
     "name" : "바위매니아",
@@ -898,7 +898,7 @@
   },
   "-L-MKCY3mi1NBTxmq8rb" : {
     "attr" : "바위",
-    "burf" : [ 0, 0, 0, 8, 0, 12 ],
+    "buff" : [ 0, 0, 0, 8, 0, 12 ],
     "condition" : 40,
     "id" : "-L-MKCY3mi1NBTxmq8rb",
     "name" : "바위짐리더",
@@ -907,7 +907,7 @@
   },
   "-L-MKCaeCxiXUR-FFB-L" : {
     "attr" : "바위",
-    "burf" : [ 0, 0, 0, 10, 0, 15 ],
+    "buff" : [ 0, 0, 0, 10, 0, 15 ],
     "condition" : 50,
     "id" : "-L-MKCaeCxiXUR-FFB-L",
     "name" : "바위챔피언",
@@ -916,7 +916,7 @@
   },
   "-L-MKCeLDa2CbS2t9Jth" : {
     "attr" : "바위",
-    "burf" : [ 0, 0, 0, 16, 0, 24 ],
+    "buff" : [ 0, 0, 0, 16, 0, 24 ],
     "condition" : 58,
     "id" : "-L-MKCeLDa2CbS2t9Jth",
     "name" : "바위마스터",
@@ -925,7 +925,7 @@
   },
   "-L-MKChy6jlYOOAXJa0G" : {
     "attr" : "유령",
-    "burf" : [ 1, 0, 3, 1, 0, 0 ],
+    "buff" : [ 1, 0, 3, 1, 0, 0 ],
     "condition" : 7,
     "id" : "-L-MKChy6jlYOOAXJa0G",
     "name" : "유령수집가",
@@ -934,7 +934,7 @@
   },
   "-L-MKClWbOsmmPZCVyOM" : {
     "attr" : "유령",
-    "burf" : [ 2, 0, 6, 4, 0, 0 ],
+    "buff" : [ 2, 0, 6, 4, 0, 0 ],
     "condition" : 14,
     "id" : "-L-MKClWbOsmmPZCVyOM",
     "name" : "유령애호가",
@@ -943,7 +943,7 @@
   },
   "-L-MKCp5aElEabIBpBbx" : {
     "attr" : "유령",
-    "burf" : [ 3, 0, 9, 3, 0, 0 ],
+    "buff" : [ 3, 0, 9, 3, 0, 0 ],
     "condition" : 21,
     "id" : "-L-MKCp5aElEabIBpBbx",
     "name" : "유령매니아",
@@ -952,7 +952,7 @@
   },
   "-L-MKCsgzpOD5O96E4SP" : {
     "attr" : "유령",
-    "burf" : [ 4, 0, 12, 4, 0, 0 ],
+    "buff" : [ 4, 0, 12, 4, 0, 0 ],
     "condition" : 28,
     "id" : "-L-MKCsgzpOD5O96E4SP",
     "name" : "유령짐리더",
@@ -961,7 +961,7 @@
   },
   "-L-MKCwJwHdsCoaZApWJ" : {
     "attr" : "유령",
-    "burf" : [ 5, 0, 15, 5, 0, 0 ],
+    "buff" : [ 5, 0, 15, 5, 0, 0 ],
     "condition" : 35,
     "id" : "-L-MKCwJwHdsCoaZApWJ",
     "name" : "유령챔피언",
@@ -970,7 +970,7 @@
   },
   "-L-MKD-6gP6Dq7doUob2" : {
     "attr" : "유령",
-    "burf" : [ 8, 0, 24, 8, 0, 0 ],
+    "buff" : [ 8, 0, 24, 8, 0, 0 ],
     "condition" : 39,
     "id" : "-L-MKD-6gP6Dq7doUob2",
     "name" : "유령마스터",
@@ -979,7 +979,7 @@
   },
   "-L-MKD2iQmwSzd9iAled" : {
     "attr" : "용",
-    "burf" : [ 0, 0, 2, 2, 1, 0 ],
+    "buff" : [ 0, 0, 2, 2, 1, 0 ],
     "condition" : 8,
     "id" : "-L-MKD2iQmwSzd9iAled",
     "name" : "용수집가",
@@ -988,7 +988,7 @@
   },
   "-L-MKD6JBNw_HCzBoYis" : {
     "attr" : "용",
-    "burf" : [ 0, 0, 4, 4, 2, 0 ],
+    "buff" : [ 0, 0, 4, 4, 2, 0 ],
     "condition" : 16,
     "id" : "-L-MKD6JBNw_HCzBoYis",
     "name" : "용애호가",
@@ -997,7 +997,7 @@
   },
   "-L-MKDA1UwI46DKFP1CG" : {
     "attr" : "용",
-    "burf" : [ 0, 0, 6, 6, 3, 0 ],
+    "buff" : [ 0, 0, 6, 6, 3, 0 ],
     "condition" : 24,
     "id" : "-L-MKDA1UwI46DKFP1CG",
     "name" : "용매니아",
@@ -1006,7 +1006,7 @@
   },
   "-L-MKDD_U6efIQCRd19n" : {
     "attr" : "용",
-    "burf" : [ 0, 0, 8, 8, 4, 0 ],
+    "buff" : [ 0, 0, 8, 8, 4, 0 ],
     "condition" : 32,
     "id" : "-L-MKDD_U6efIQCRd19n",
     "name" : "용짐리더",
@@ -1015,7 +1015,7 @@
   },
   "-L-MKDHHgy_JpgCkut-I" : {
     "attr" : "용",
-    "burf" : [ 0, 0, 10, 10, 5, 0 ],
+    "buff" : [ 0, 0, 10, 10, 5, 0 ],
     "condition" : 40,
     "id" : "-L-MKDHHgy_JpgCkut-I",
     "name" : "용챔피언",
@@ -1024,7 +1024,7 @@
   },
   "-L-MKDKwUHshb5f4WilN" : {
     "attr" : "용",
-    "burf" : [ 0, 0, 16, 16, 8, 0 ],
+    "buff" : [ 0, 0, 16, 16, 8, 0 ],
     "condition" : 47,
     "id" : "-L-MKDKwUHshb5f4WilN",
     "name" : "용마스터",
@@ -1033,7 +1033,7 @@
   },
   "-L-MKDP3DGR_UDHfsZnB" : {
     "attr" : "악",
-    "burf" : [ 1, 1, 0, 0, 2, 1 ],
+    "buff" : [ 1, 1, 0, 0, 2, 1 ],
     "condition" : 8,
     "id" : "-L-MKDP3DGR_UDHfsZnB",
     "name" : "악수집가",
@@ -1042,7 +1042,7 @@
   },
   "-L-MKDT12UePhXs7iNWV" : {
     "attr" : "악",
-    "burf" : [ 2, 2, 0, 0, 4, 2 ],
+    "buff" : [ 2, 2, 0, 0, 4, 2 ],
     "condition" : 16,
     "id" : "-L-MKDT12UePhXs7iNWV",
     "name" : "악애호가",
@@ -1051,7 +1051,7 @@
   },
   "-L-MKDWwAERfWjFwXuvj" : {
     "attr" : "악",
-    "burf" : [ 3, 3, 0, 0, 6, 3 ],
+    "buff" : [ 3, 3, 0, 0, 6, 3 ],
     "condition" : 24,
     "id" : "-L-MKDWwAERfWjFwXuvj",
     "name" : "악매니아",
@@ -1060,7 +1060,7 @@
   },
   "-L-MKD_UJg9B_JOYN6XS" : {
     "attr" : "악",
-    "burf" : [ 4, 4, 0, 0, 8, 4 ],
+    "buff" : [ 4, 4, 0, 0, 8, 4 ],
     "condition" : 32,
     "id" : "-L-MKD_UJg9B_JOYN6XS",
     "name" : "악짐리더",
@@ -1069,7 +1069,7 @@
   },
   "-L-MKDd8TUTYHMW0uxYt" : {
     "attr" : "악",
-    "burf" : [ 5, 5, 0, 0, 10, 5 ],
+    "buff" : [ 5, 5, 0, 0, 10, 5 ],
     "condition" : 40,
     "id" : "-L-MKDd8TUTYHMW0uxYt",
     "name" : "악챔피언",
@@ -1078,7 +1078,7 @@
   },
   "-L-MKDgg4OvLr8wXo3jW" : {
     "attr" : "악",
-    "burf" : [ 8, 8, 0, 0, 16, 8 ],
+    "buff" : [ 8, 8, 0, 0, 16, 8 ],
     "condition" : 49,
     "id" : "-L-MKDgg4OvLr8wXo3jW",
     "name" : "악마스터",
@@ -1087,7 +1087,7 @@
   },
   "-L-MKDkGjf3gFtl1XO61" : {
     "attr" : "강철",
-    "burf" : [ 1, 0, 0, 0, 0, 4 ],
+    "buff" : [ 1, 0, 0, 0, 0, 4 ],
     "condition" : 8,
     "id" : "-L-MKDkGjf3gFtl1XO61",
     "name" : "강철수집가",
@@ -1096,7 +1096,7 @@
   },
   "-L-MKDnv0VZA9Mxijode" : {
     "attr" : "강철",
-    "burf" : [ 2, 0, 0, 0, 0, 8 ],
+    "buff" : [ 2, 0, 0, 0, 0, 8 ],
     "condition" : 16,
     "id" : "-L-MKDnv0VZA9Mxijode",
     "name" : "강철애호가",
@@ -1105,7 +1105,7 @@
   },
   "-L-MKDrUNsRi5j9vEFQA" : {
     "attr" : "강철",
-    "burf" : [ 3, 0, 0, 0, 0, 12 ],
+    "buff" : [ 3, 0, 0, 0, 0, 12 ],
     "condition" : 24,
     "id" : "-L-MKDrUNsRi5j9vEFQA",
     "name" : "강철매니아",
@@ -1114,7 +1114,7 @@
   },
   "-L-MKDvFTo1RMS6XyiwC" : {
     "attr" : "강철",
-    "burf" : [ 4, 0, 0, 0, 0, 16 ],
+    "buff" : [ 4, 0, 0, 0, 0, 16 ],
     "condition" : 32,
     "id" : "-L-MKDvFTo1RMS6XyiwC",
     "name" : "강철짐리더",
@@ -1123,7 +1123,7 @@
   },
   "-L-MKDyyy69ZBo_7cm5v" : {
     "attr" : "강철",
-    "burf" : [ 5, 0, 0, 0, 0, 20 ],
+    "buff" : [ 5, 0, 0, 0, 0, 20 ],
     "condition" : 40,
     "id" : "-L-MKDyyy69ZBo_7cm5v",
     "name" : "강철챔피언",
@@ -1132,7 +1132,7 @@
   },
   "-L-MKE1m4qOp77qkwP0H" : {
     "attr" : "강철",
-    "burf" : [ 8, 0, 0, 0, 0, 32 ],
+    "buff" : [ 8, 0, 0, 0, 0, 32 ],
     "condition" : 49,
     "id" : "-L-MKE1m4qOp77qkwP0H",
     "name" : "강철마스터",

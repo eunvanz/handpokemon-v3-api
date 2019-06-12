@@ -84,8 +84,8 @@ export const MIX_RULE = (srcMon, tgtMon) => {
 
 export const SPECIAL_MIX_RULE = (srcMon, tgtMon) => {
   if (
-    [srcMon.name, tgtMon.name].includes('야도란') &&
-    [srcMon.name, tgtMon.name].incluedes('셀러')
+    [srcMon.name, tgtMon.name].includes('야돈') &&
+    [srcMon.name, tgtMon.name].includes('셀러')
   ) {
     return ['야도란', '야도킹'];
   } else if (

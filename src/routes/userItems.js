@@ -13,7 +13,8 @@ router.get('/', token({ required: true }), async (req, res, next) => {
   try {
     const userItems = await UserItem.findAll({
       where: {
-        userId: req.user.id
+        userId: req.user.id,
+        used: 0
       },
       include: [
         {
@@ -38,78 +39,87 @@ router.post(
       const { itemId } = params;
       const { quantity } = query;
       const result = await db.sequelize.transaction(async transaction => {
-        const userItems = await UserItem.findAll({
-          where: {
-            itemId,
-            used: 0
-          },
-          include: [
-            {
-              model: Item,
-              as: 'item'
-            }
-          ],
-          transaction,
-          lock: {
-            level: transaction.LOCK.UPDATE
-          }
-        });
-        if (userItems.length < quantity)
-          return next('아이템 수량이 부족합니다.');
-
-        for (let i = 0; i < quantity; i++) {
-          await UserItem.update(
-            { used: 1 },
-            {
-              where: {
-                id: userItems[i].id
-              },
-              fields: ['used'],
-              transaction
-            }
-          );
-        }
-        const { itemTypeCd, value } = userItems[0].item;
-        let updateData, fields;
-        if (itemTypeCd === ITEM_TYPE.CREDIT) {
-          updateData = {
-            [value]: 12
-          };
-          fields = ['pokemoney', value];
-          await User.update(updateData, {
+        try {
+          const userItems = await UserItem.findAll({
             where: {
-              id: thisUser.id
-            },
-            fields,
-            transaction
-          });
-          return Promise.resolve({ itemTypeCd, value });
-        } else if (itemTypeCd === ITEM_TYPE.PICK) {
-          const mons = await Mon.findAll({
-            where: {
-              gradeCd: {
-                [opIn]: value.split(',')
-              }
+              itemId,
+              used: 0
             },
             include: [
               {
-                model: MonImage,
-                as: 'monImages'
+                model: Item,
+                as: 'item'
               }
-            ]
-          });
-          const pickedMons = await pickMon({
-            mons,
+            ],
             transaction,
-            Collection,
-            user,
-            User,
-            useCredit: false,
-            repeatCnt: 1,
-            Mon,
-            MonImage
+            lock: {
+              level: transaction.LOCK.UPDATE
+            }
           });
-          return Promise.resolve({ itemTypeCd, value, pickedMons });
+          if (userItems.length < quantity)
+            return next('아이템 수량이 부족합니다.');
+
+          for (let i = 0; i < quantity; i++) {
+            await UserItem.update(
+              { used: 1 },
+              {
+                where: {
+                  id: userItems[i].id
+                },
+                fields: ['used'],
+                transaction
+              }
+            );
+          }
+          const { itemTypeCd, value } = userItems[0].item;
+          let updateData, fields;
+          if (itemTypeCd === ITEM_TYPE.CREDIT) {
+            updateData = {
+              [value]: 12
+            };
+            fields = ['pokemoney', value];
+            await User.update(updateData, {
+              where: {
+                id: user.id
+              },
+              fields,
+              transaction
+            });
+            return Promise.resolve({ itemTypeCd, value });
+          } else if (itemTypeCd === ITEM_TYPE.PICK) {
+            const mons = await Mon.findAll({
+              where: {
+                gradeCd: {
+                  [opIn]: value.split(',')
+                }
+              },
+              include: [
+                {
+                  model: MonImage,
+                  as: 'monImages'
+                },
+                {
+                  model: Mon,
+                  as: 'nextMons'
+                }
+              ]
+            });
+            const pickedMons = await pickMon({
+              mons,
+              transaction,
+              Collection,
+              user,
+              User,
+              useCredit: false,
+              repeatCnt: quantity,
+              Mon,
+              MonImage
+            });
+            return Promise.resolve({ itemTypeCd, value, pickedMons });
+          }
+        } catch (error) {
+          console.error(error);
+          throw new Error(error);
         }
       });
       res.json(result);

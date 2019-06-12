@@ -23,7 +23,7 @@ class Achievement extends Sequelize.Model {
           type: DataTypes.INTEGER,
           allowNull: false
         },
-        burf: {
+        buff: {
           type: DataTypes.STRING(30),
           allowNull: false
         }

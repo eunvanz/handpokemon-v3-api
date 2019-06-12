@@ -38,7 +38,7 @@ const getMigData = () => {
       conditionValue: item.condition,
       name: item.name,
       reward: item.reward,
-      burf: item.burf.join(',')
+      buff: item.buff.join(',')
     };
     result.push(achievement);
   });
