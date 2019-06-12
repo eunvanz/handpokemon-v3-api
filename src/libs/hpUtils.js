@@ -1,4 +1,4 @@
-import { round, random } from 'lodash';
+import { round, random, shuffle, concat } from 'lodash';
 import moment from 'moment';
 import { getRandomInt, repeat } from './commonUtils';
 import { RANK_RULE, CREDIT_RULE } from '../constants/rules';
@@ -270,13 +270,28 @@ export const pickMon = async ({
   user,
   User,
   useCredit,
-  repeatCnt
+  repeatCnt,
+  Mon,
+  MonImage
 }) => {
   const userCollections = await Collection.findAll({
     where: {
       userId: user.id
     },
-    include: [includeMon, includeMonImages, includeNextMons],
+    include: [
+      {
+        model: Mon,
+        as: 'mon'
+      },
+      {
+        model: MonImage,
+        as: 'monImages'
+      },
+      {
+        model: Mon,
+        as: 'nextMons'
+      }
+    ],
     transaction,
     lock: {
       level: transaction.LOCK.UPDATE

@@ -6,7 +6,7 @@ import { ITEM_TYPE } from '../constants/codes';
 import { pickMon } from '../libs/hpUtils';
 
 const router = express.Router();
-const { Item, User, Collection, Mon, UserItem } = db;
+const { Item, User, Collection, Mon, UserItem, MonImage } = db;
 const { in: opIn } = Sequelize.Op;
 
 router.get('/', token({ required: true }), async (req, res, next) => {
@@ -69,7 +69,7 @@ router.post(
             }
           );
         }
-        const { itemTypeCd, value } = userItems[0];
+        const { itemTypeCd, value } = userItems[0].item;
         let updateData, fields;
         if (itemTypeCd === ITEM_TYPE.CREDIT) {
           updateData = {
@@ -90,18 +90,26 @@ router.post(
               gradeCd: {
                 [opIn]: value.split(',')
               }
-            }
+            },
+            include: [
+              {
+                model: MonImage,
+                as: 'monImages'
+              }
+            ]
           });
-          const { insert, update } = await pickMon({
+          const pickedMons = await pickMon({
             mons,
             transaction,
             Collection,
             user,
             User,
             useCredit: false,
-            repeatCnt: 1
+            repeatCnt: 1,
+            Mon,
+            MonImage
           });
-          return Promise.resolve({ itemTypeCd, value, insert, update });
+          return Promise.resolve({ itemTypeCd, value, pickedMons });
         }
       });
       res.json(result);
