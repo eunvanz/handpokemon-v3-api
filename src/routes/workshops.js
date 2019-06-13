@@ -19,10 +19,6 @@ router.get('/', async (req, res, next) => {
         {
           model: Like,
           as: 'likes'
-        },
-        {
-          model: Comment,
-          as: 'comments'
         }
       ]
     });

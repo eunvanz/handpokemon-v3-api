@@ -27,7 +27,7 @@ class Workshop extends Sequelize.Model {
           allowNull: false
         },
         image: {
-          type: DataTypes.STRING(100),
+          type: DataTypes.STRING(500),
           allowNull: false
         },
         registered: {

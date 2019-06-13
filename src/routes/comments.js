@@ -1,19 +1,29 @@
 import express from 'express';
 import db from '../models';
 import { token } from '../services/passport';
+import { generatePaginationResult } from '../libs/sequelizeUtils';
 
 const router = express.Router();
-const { Comment } = db;
+const { Comment, User } = db;
 
 router.get('/', async (req, res, next) => {
   try {
     const { query } = req;
-    const { curPage, perPage } = query;
+    const { curPage, perPage, conditionKey, conditionValue } = query;
     const totalElements = await Comment.count();
     const content = await Comment.findAll({
+      where: {
+        [conditionKey]: conditionValue
+      },
       order: [['id', 'DESC']],
       offset: (Number(curPage) - 1) * Number(perPage),
-      limit: Number(perPage)
+      limit: Number(perPage),
+      include: [
+        {
+          model: User,
+          as: 'user'
+        }
+      ]
     });
     res.json(
       generatePaginationResult({
@@ -31,10 +41,11 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', token({ required: true }), async (req, res, next) => {
   try {
-    const like = await Comment.create(
+    const comment = await Comment.create(
       Object.assign({ userId: req.user.id }, req.body)
     );
-    res.json(like);
+    comment.setDataValue('user', req.user);
+    res.json(comment);
   } catch (error) {
     console.error(error);
     next(error);
