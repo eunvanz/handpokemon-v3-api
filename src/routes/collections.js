@@ -276,6 +276,7 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
               where: {
                 id: collection.id
               },
+              force: true,
               transaction
             });
             colPointDiff += collection.mon.point * -1;
@@ -475,6 +476,7 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
             where: {
               id: collection.id
             },
+            force: true,
             transaction
           });
           colPointDiff += collection.mon.point * -1;

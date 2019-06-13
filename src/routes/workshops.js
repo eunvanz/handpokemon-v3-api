@@ -1,9 +1,7 @@
 import express from 'express';
 import db from '../models';
 import { token } from '../services/passport';
-import { ROLE } from '../constants/codes';
 import { generatePaginationResult } from '../libs/sequelizeUtils';
-import { token } from '../services/passport/index';
 
 const router = express.Router();
 const { Workshop, Like, Comment } = db;
@@ -13,7 +11,7 @@ router.get('/', async (req, res, next) => {
     const { query } = req;
     const { curPage, perPage } = query;
     const totalElements = await Workshop.count();
-    const mons = await Workshop.findAll({
+    const content = await Workshop.findAll({
       order: [['id', 'DESC']],
       offset: (Number(curPage) - 1) * Number(perPage),
       limit: Number(perPage),

@@ -5,7 +5,7 @@ class Comment extends Sequelize.Model {
     this.belongsTo(models.User, {
       foreignKey: 'userId',
       as: 'user'
-    })
+    });
   }
   static init(sequelize, DataTypes) {
     return super.init(
@@ -15,11 +15,11 @@ class Comment extends Sequelize.Model {
           allowNull: false
         },
         workshopId: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER
         },
         articleId: {
-          type: DataTypes.INTEGER,
-        }
+          type: DataTypes.INTEGER
+        },
         content: {
           type: DataTypes.STRING(500),
           allowNull: false

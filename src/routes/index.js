@@ -12,6 +12,8 @@ import userAchievements from './userAchievements';
 import items from './items';
 import userItems from './userItems';
 import workshops from './workshops';
+import likes from './likes';
+import comments from './comments';
 
 const router = new Router();
 
@@ -28,5 +30,7 @@ router.use('/user-achievements', userAchievements);
 router.use('/user-items', userItems);
 router.use('/items', items);
 router.use('/workshops', workshops);
+router.use('/likes', likes);
+router.use('/comments', comments);
 
 export default router;

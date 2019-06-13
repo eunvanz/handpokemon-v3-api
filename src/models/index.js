@@ -11,10 +11,10 @@ import AchievementModel from './achievement';
 import UserAchievementModel from './userAchievement';
 import ItemModel from './item';
 import UserItemModel from './userItem';
-import Workshop from './workshop';
-import Article from './article';
-import Like from './like';
-import Comment from './comment';
+import WorkshopModel from './workshop';
+import ArticleModel from './article';
+import LikeModel from './like';
+import CommentModel from './comment';
 
 const sequelize = new Sequelize(
   sequelizeConfig.database,

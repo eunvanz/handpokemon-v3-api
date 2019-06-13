@@ -11,7 +11,7 @@ class Workshop extends Sequelize.Model {
       as: 'comments'
     });
     this.hasMany(models.Like, {
-      foreignKey: 'workshopId',
+      foreignKey: 'likeId',
       as: 'likes'
     });
   }
@@ -32,11 +32,6 @@ class Workshop extends Sequelize.Model {
         },
         registered: {
           type: DataTypes.TINYINT,
-          allowNull: false,
-          defaultValue: 0
-        },
-        likes: {
-          type: DataTypes.INTEGER,
           allowNull: false,
           defaultValue: 0
         },
