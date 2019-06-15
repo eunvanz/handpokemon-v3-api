@@ -14,6 +14,7 @@ import userItems from './userItems';
 import workshops from './workshops';
 import likes from './likes';
 import comments from './comments';
+import articles from './articles';
 
 const router = new Router();
 
@@ -32,5 +33,6 @@ router.use('/items', items);
 router.use('/workshops', workshops);
 router.use('/likes', likes);
 router.use('/comments', comments);
+router.use('/articles', articles);
 
 export default router;

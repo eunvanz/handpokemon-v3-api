@@ -11,7 +11,7 @@ router.post('/', async (req, res, next) => {
       if (err) {
         next(err);
       } else {
-        return res.json({ url: req.file.location });
+        return res.json({ url: req.file.location, link: req.file.location });
       }
     });
   } catch (error) {

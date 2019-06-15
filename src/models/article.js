@@ -33,6 +33,11 @@ class Article extends Sequelize.Model {
         categoryCd: {
           type: DataTypes.STRING(4),
           allowNull: false
+        },
+        views: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 0
         }
       },
       {

@@ -274,5 +274,23 @@ export default [
     masterCdNm: '리그',
     detailCd: '0806',
     detailCdNm: '챔피온'
+  },
+  {
+    masterCd: '09',
+    masterCdNm: '게시물',
+    detailCd: '0901',
+    detailCdNm: '자유게시판'
+  },
+  {
+    masterCd: '09',
+    masterCdNm: '게시물',
+    detailCd: '0902',
+    detailCdNm: '공지사항'
+  },
+  {
+    masterCd: '09',
+    masterCdNm: '게시물',
+    detailCd: '0903',
+    detailCdNm: '게임가이드'
   }
 ];
