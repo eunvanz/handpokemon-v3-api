@@ -10,7 +10,11 @@ router.get('/', async (req, res, next) => {
   try {
     const { query } = req;
     const { curPage, perPage, conditionKey, conditionValue } = query;
-    const totalElements = await Comment.count();
+    const totalElements = await Comment.count({
+      where: {
+        [conditionKey]: conditionValue
+      }
+    });
     const content = await Comment.findAll({
       where: {
         [conditionKey]: conditionValue

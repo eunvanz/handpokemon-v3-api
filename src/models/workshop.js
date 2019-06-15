@@ -11,7 +11,7 @@ class Workshop extends Sequelize.Model {
       as: 'comments'
     });
     this.hasMany(models.Like, {
-      foreignKey: 'likeId',
+      foreignKey: 'workshopId',
       as: 'likes'
     });
   }

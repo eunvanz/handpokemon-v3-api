@@ -33,4 +33,20 @@ router.delete('/:id', token({ required: true }), async (req, res, next) => {
   }
 });
 
+router.get('/', async (req, res, next) => {
+  try {
+    const { query } = req;
+    const { conditionKey, conditionValue } = query;
+    const content = await Like.findAll({
+      where: {
+        [conditionKey]: conditionValue
+      }
+    });
+    res.json({ content });
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 export default router;
