@@ -84,4 +84,34 @@ router.put('/views/:id', async (req, res, next) => {
   }
 });
 
+router.put('/:id', token({ required: true }), async (req, res, next) => {
+  try {
+    await Article.update(req.body, {
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    });
+    res.json();
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.delete('/:id', token({ required: true }), async (req, res, next) => {
+  try {
+    await Article.destroy({
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    });
+    res.json();
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 export default router;
