@@ -4,7 +4,7 @@ import { token } from '../services/passport';
 import { generatePaginationResult } from '../libs/sequelizeUtils';
 
 const router = express.Router();
-const { Workshop, Like, Comment } = db;
+const { Workshop, Like } = db;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -40,6 +40,22 @@ router.post('/', token({ required: true }), async (req, res, next) => {
     const workshop = await Workshop.create(req.body);
     res.json(workshop);
   } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.delete('/:id', token({ required: true }), async (req, res, next) => {
+  try {
+    await Workshop.destroy({
+      where: {
+        id: req.params.id,
+        userId: req.user.id
+      }
+    });
+    res.json();
+  } catch (error) {
+    console.error(error);
     next(error);
   }
 });
