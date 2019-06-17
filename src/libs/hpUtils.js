@@ -269,8 +269,8 @@ export const pickMon = async ({
   Collection,
   user,
   User,
-  useCredit,
-  repeatCnt,
+  useCredit = false,
+  repeatCnt = 0,
   Mon,
   MonImage
 }) => {
@@ -306,12 +306,14 @@ export const pickMon = async ({
     userCollections,
     userId: user.id
   });
-  insert.forEach(async item => {
+  insert.forEach(async (item, idx) => {
     try {
-      if (item)
-        await Collection.create(item, {
+      if (item) {
+        const newCollection = await Collection.create(item, {
           transaction
         });
+        insert[idx].id = newCollection.id;
+      }
     } catch (error) {
       throw new Error(error);
     }

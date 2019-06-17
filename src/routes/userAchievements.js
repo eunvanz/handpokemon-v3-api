@@ -88,6 +88,7 @@ router.get('/refresh', token({ required: true }), async (req, res, next) => {
         });
 
         // insert
+        let totalReward = 0;
         for (const item of achievements) {
           const { achievementTypeCd, conditionValue } = item;
           if (achievementTypeCd === ACHIEVEMENT_TYPE.COL) {
@@ -107,18 +108,7 @@ router.get('/refresh', token({ required: true }), async (req, res, next) => {
                   transaction
                 }
               );
-              await User.update(
-                {
-                  pokemoney: user.pokemoney + item.reward
-                },
-                {
-                  where: {
-                    id: user.id
-                  },
-                  fields: ['pokemoney'],
-                  transaction
-                }
-              );
+              totalReward += item.reward;
               userAchievement.dataValues.achievement = item.dataValues;
               innerResult.inserted.push(userAchievement);
             }
@@ -144,23 +134,24 @@ router.get('/refresh', token({ required: true }), async (req, res, next) => {
                   transaction
                 }
               );
-              await User.update(
-                {
-                  pokemoney: user.pokemoney + item.reward
-                },
-                {
-                  where: {
-                    id: user.id
-                  },
-                  fields: ['pokemoney'],
-                  transaction
-                }
-              );
+              totalReward += item.reward;
               userAchievement.dataValues.achievement = item.dataValues;
               innerResult.inserted.push(userAchievement);
             }
           }
         }
+        await User.update(
+          {
+            pokemoney: user.pokemoney + totalReward
+          },
+          {
+            where: {
+              id: user.id
+            },
+            fields: ['pokemoney'],
+            transaction
+          }
+        );
 
         userAchievements = await UserAchievement.findAll({
           where: {

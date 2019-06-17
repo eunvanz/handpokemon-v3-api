@@ -8,7 +8,8 @@ import {
   getRandomCollectionsByNumberFromMons,
   getRandomCollectionsByNumberFromMonsWithUserCollections,
   getRefreshedUser,
-  levelDownCollection
+  levelDownCollection,
+  pickMon
 } from '../libs/hpUtils';
 import { CREDIT_RULE, MIX_RULE, SPECIAL_MIX_RULE } from '../constants/rules';
 
@@ -155,75 +156,17 @@ router.get('/pick', token({ required: true }), async (req, res, next) => {
             level: transaction.LOCK.SHARE
           }
         });
-        const userCollections = await Collection.findAll({
-          where: {
-            userId: user.id
-          },
-          include: [includeMon, includeMonImages, includeNextMons],
-          transaction,
-          lock: {
-            level: transaction.LOCK.UPDATE
-          }
-        });
-        const {
-          insert,
-          update
-        } = getRandomCollectionsByNumberFromMonsWithUserCollections({
-          repeatCnt,
+        return pickMon({
           mons,
-          userCollections,
-          userId: user.id
+          transaction,
+          Collection,
+          user,
+          User,
+          useCredit: true,
+          repeatCnt,
+          Mon,
+          MonImage
         });
-        insert.forEach(async item => {
-          try {
-            if (item)
-              await Collection.create(item, {
-                transaction
-              });
-          } catch (error) {
-            throw new Error(error);
-          }
-        });
-        update.forEach(async item => {
-          try {
-            if (item)
-              await Collection.update(item, {
-                where: {
-                  id: item.id
-                },
-                transaction,
-                fields: [
-                  'level',
-                  'addedHp',
-                  'addedPower',
-                  'addedArmor',
-                  'addedSPower',
-                  'addedSArmor',
-                  'addedDex',
-                  'addedTotal'
-                ]
-              });
-          } catch (error) {
-            throw new Error(error);
-          }
-        });
-        const now = Date.now();
-        const diff = now - Number(thisUser.lastPick);
-        const colPoint =
-          thisUser.colPoint +
-          insert.reduce((accm, item) => accm + item.mon.point, 0);
-        await User.update(
-          Object.assign({}, thisUser, {
-            pickCredit: thisUser.pickCredit - repeatCnt,
-            lastPick: now - (diff % CREDIT_RULE.PICK.INTERVAL),
-            colPoint
-          }),
-          {
-            where: { id: thisUser.id },
-            transaction
-          }
-        );
-        return Promise.resolve(shuffle(concat(insert, update)));
       } catch (error) {
         throw new Error(error);
       }
@@ -358,68 +301,15 @@ router.get('/mix', token({ required: true }), async (req, res, next) => {
           });
         }
 
-        const userCollections = await Collection.findAll({
-          where: {
-            userId: user.id
-          },
-          include: [includeMon, includeMonImages, includeNextMons],
-          transaction,
-          lock: {
-            level: transaction.LOCK.UPDATE
-          }
-        });
-        const {
-          insert,
-          update
-        } = getRandomCollectionsByNumberFromMonsWithUserCollections({
+        return pickMon({
           mons,
-          userCollections,
-          userId: user.id
+          transaction,
+          Collection,
+          user,
+          User,
+          Mon,
+          MonImage
         });
-        insert.forEach(async item => {
-          try {
-            if (item)
-              await Collection.create(item, {
-                transaction
-              });
-          } catch (error) {
-            throw new Error(error);
-          }
-        });
-        update.forEach(async item => {
-          try {
-            if (item)
-              await Collection.update(item, {
-                where: {
-                  id: item.id
-                },
-                transaction,
-                fields: [
-                  'level',
-                  'addedHp',
-                  'addedPower',
-                  'addedArmor',
-                  'addedSPower',
-                  'addedSArmor',
-                  'addedDex',
-                  'addedTotal'
-                ]
-              });
-          } catch (error) {
-            throw new Error(error);
-          }
-        });
-        colPointDiff += insert.reduce((accm, item) => accm + item.mon.point, 0);
-        await User.update(
-          Object.assign({}, thisUser, {
-            colPoint: thisUser.colPoint + colPointDiff
-          }),
-          {
-            where: { id: thisUser.id },
-            transaction
-          }
-        );
-        return Promise.resolve(shuffle(concat(insert, update)));
       } catch (error) {
         throw new Error(error);
       }
@@ -572,12 +462,14 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
             update = update.concat(kkupzilResult.update);
         }
 
-        insert.forEach(async item => {
+        insert.forEach(async (item, idx) => {
           try {
-            if (item)
-              await Collection.create(item, {
+            if (item) {
+              const newCollection = await Collection.create(item, {
                 transaction
               });
+              insert[idx].id = newCollection.id;
+            }
           } catch (error) {
             throw new Error(error);
           }

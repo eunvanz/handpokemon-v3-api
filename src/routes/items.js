@@ -34,7 +34,7 @@ router.get('/buy', token({ required: true }), async (req, res, next) => {
         if (thisUser.pokemoney < price * quantity)
           return next('포키머니가 부족합니다.');
         await User.update(
-          { pokemoney: thisUser.pokemoney - price },
+          { pokemoney: thisUser.pokemoney - price * quantity },
           {
             where: {
               id: thisUser.id
