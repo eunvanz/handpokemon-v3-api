@@ -129,6 +129,16 @@ class Collection extends Sequelize.Model {
           type: DataTypes.SMALLINT,
           allowNull: false,
           defaultValue: 1
+        },
+        defense: {
+          type: DataTypes.TINYINT,
+          allowNull: false,
+          defaultValue: 0
+        },
+        favorite: {
+          type: DataTypes.TINYINT,
+          allowNull: false,
+          defaultValue: 0
         }
       },
       {

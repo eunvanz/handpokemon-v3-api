@@ -2,9 +2,10 @@ import express from 'express';
 import db from '../models';
 import { token } from '../services/passport';
 import { ROLE } from '../constants/codes';
+import { resolve } from 'dns';
 
 const router = express.Router();
-const { MonImage } = db;
+const { MonImage, Mon, Workshop } = db;
 
 router.post(
   '/',
@@ -132,6 +133,65 @@ router.delete(
         return res.status(404).json({ messge: '해당하는 이미지가 없습니다.' });
       }
     } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.post(
+  '/workshop-to-mon-image',
+  token({ required: true, roles: [ROLE.ADMIN] }),
+  async (req, res, next) => {
+    try {
+      const result = await db.sequelize.transaction(async transaction => {
+        try {
+          const workshop = req.body;
+          console.log('workshop', workshop);
+          const { monName, designer } = workshop;
+          const mon = await Mon.findOne({
+            where: {
+              name: monName
+            },
+            transaction
+          });
+          const monId = mon.id;
+          const monImages = await MonImage.findAll({
+            where: {
+              id: monId
+            },
+            order: [['seq', 'DESC']],
+            transaction
+          });
+          const seq = (monImages[0] ? monImages[0].seq : 0) + 1;
+          const newMonImage = await MonImage.create(
+            {
+              url: workshop.image,
+              monId,
+              designer,
+              seq
+            },
+            {
+              transaction
+            }
+          );
+          await Workshop.update(
+            { registered: 1 },
+            {
+              fields: ['registered'],
+              where: {
+                id: workshop.id
+              },
+              transaction
+            }
+          );
+          return Promise.resolve(newMonImage);
+        } catch (error) {
+          throw new Error(error);
+        }
+      });
+      res.json(result);
+    } catch (error) {
+      console.error(error);
       next(error);
     }
   }
