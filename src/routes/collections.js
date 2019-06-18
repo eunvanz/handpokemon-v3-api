@@ -520,4 +520,37 @@ router.get('/evolute', token({ required: true }), async (req, res, next) => {
   }
 });
 
+router.put('/:id', token({ required: true }), async (req, res, next) => {
+  try {
+    const result = await db.sequelize.transaction(async transaction => {
+      try {
+        const originCollection = await Collection.findByPk(req.params.id, {
+          transaction,
+          lock: { level: transaction.LOCK.UPDATE }
+        });
+        console.log('originCollection', originCollection);
+        const newCollection = Object.assign({}, originCollection.dataValues, {
+          defense: req.body.defense,
+          favorite: req.body.favorite
+        });
+        console.log('newCollection', newCollection);
+        await Collection.update(newCollection, {
+          where: {
+            id: req.params.id
+          },
+          transaction,
+          fields: ['defense', 'favorite']
+        });
+        return Promise.resolve(newCollection);
+      } catch (error) {
+        throw new Error(error);
+      }
+    });
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
 export default router;
