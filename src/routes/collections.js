@@ -54,6 +54,7 @@ router.get('/user/:userId', async (req, res, next) => {
       where: {
         userId: req.params.userId
       },
+      order: [['monId', 'ASC']],
       include: [includeMon, includeUser, includeMonImages, includeNextMons]
     });
     res.json(cols);
@@ -69,6 +70,7 @@ router.get('/token', token({ required: true }), async (req, res, next) => {
       where: {
         userId: req.user.id
       },
+      order: [['monId', 'ASC']],
       include: [includeMon, includeUser, includeMonImages, includeNextMons]
     });
     res.json(cols);
