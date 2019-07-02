@@ -15,6 +15,7 @@ import WorkshopModel from './workshop';
 import ArticleModel from './article';
 import LikeModel from './like';
 import CommentModel from './comment';
+import DefenseModel from './defense';
 
 const sequelize = new Sequelize(
   sequelizeConfig.database,
@@ -48,7 +49,8 @@ const models = {
   Workshop: WorkshopModel.init(sequelize, Sequelize),
   Like: LikeModel.init(sequelize, Sequelize),
   Article: ArticleModel.init(sequelize, Sequelize),
-  Comment: CommentModel.init(sequelize, Sequelize)
+  Comment: CommentModel.init(sequelize, Sequelize),
+  Defense: DefenseModel.init(sequelize, Sequelize)
 };
 
 Object.values(models)

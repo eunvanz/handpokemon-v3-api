@@ -535,7 +535,6 @@ router.put('/:id', token({ required: true }), async (req, res, next) => {
           defense: req.body.defense,
           favorite: req.body.favorite
         });
-        console.log('newCollection', newCollection);
         await Collection.update(newCollection, {
           where: {
             id: req.params.id

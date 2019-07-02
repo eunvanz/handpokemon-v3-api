@@ -15,6 +15,7 @@ import workshops from './workshops';
 import likes from './likes';
 import comments from './comments';
 import articles from './articles';
+import defenses from './defenses';
 
 const router = new Router();
 
@@ -34,5 +35,6 @@ router.use('/workshops', workshops);
 router.use('/likes', likes);
 router.use('/comments', comments);
 router.use('/articles', articles);
+router.use('/defenses', defenses);
 
 export default router;
