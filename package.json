@@ -35,7 +35,7 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "rimraf": "^2.6.3",
-    "sequelize": "^5.8.6"
+    "sequelize": "^5.15.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
